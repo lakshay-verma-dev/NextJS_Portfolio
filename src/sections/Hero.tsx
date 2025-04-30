@@ -12,7 +12,6 @@ export default function Hero() {
       style={{ backgroundImage: "url('/path/to/your-image.jpg')" }}
     >
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-
       <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center text-white">
         {/* Title */}
         <motion.h1
