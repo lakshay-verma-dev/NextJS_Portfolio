@@ -14,7 +14,7 @@ export function Hero() {
         className="space-y-6"
       >
         <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-          Hi, I'm Your Name 👋
+          Hi, I&apos;m Your Name 👋
         </h1>
         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl">
           A passionate software developer crafting beautiful and functional web experiences.
