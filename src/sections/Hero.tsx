@@ -14,16 +14,16 @@ export function Hero() {
         className="space-y-6"
       >
         <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-          Hi, I&apos;m Your Name 👋
+          Hi, I&apos;m Lakshay Verma 👋
         </h1>
         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl">
-          A passionate software developer crafting beautiful and functional web experiences.
+          Full Stack Web Developer with expertise in MERN Stack, TypeScript, and Vue.js
         </p>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="flex gap-4 justify-center"
+          className="flex gap-4 justify-center flex-wrap"
         >
           <Link
             href="#projects"
@@ -37,6 +37,13 @@ export function Hero() {
           >
             Contact Me
           </Link>
+          <a
+            href="/resume.pdf" // You'll need to add your resume PDF to the public folder
+            className="px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            download
+          >
+            Download Resume
+          </a>
         </motion.div>
       </motion.div>
     </section>
