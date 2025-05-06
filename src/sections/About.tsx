@@ -38,7 +38,7 @@ export function About() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    let particles: any[] = [];
+    let particles: { x: number; y: number; radius: number; color: string; vx: number; vy: number }[] = [];
     let animationFrameId: number;
 
     const setCanvasDimensions = () => {
@@ -64,7 +64,7 @@ export function About() {
     const animate = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((particle) => {
+      particles.forEach((particle: { x: number; y: number; radius: number; color: string; vx: number; vy: number }) => {
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
         ctx.fillStyle = particle.color;
