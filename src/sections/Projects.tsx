@@ -1,83 +1,78 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { ExternalLink, Github } from "lucide-react";
 
 export function Projects() {
   const projects = [
     {
+      title: "Personal Portfolio Website",
+      description: "My own responsive, animated portfolio built with Next.js, Tailwind CSS, Framer Motion, and shadcn/ui.",
+      tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "shadcn/ui"],
+      github: "https://github.com/yourusername/your-portfolio-repo", // Replace with your repo
+      live: "https://your-portfolio-domain.com", // Replace with your live site
+    },
+    {
       title: "Trade Monitoring Software",
-      description: "Developed a trade monitoring software to track real-time options market data and automate trade notifications using Dhan API & Telegram Bot API.",
+      description: "Real-time options market data, trade notifications, and role-based dashboards.",
       tech: ["React", "Redux", "Python", "FastAPI", "Bootstrap", "PostgreSQL", "AWS EC2"],
-      type: "Work Project"
+      github: "",
+      live: "",
     },
     {
       title: "Book Inventory Management System",
-      description: "A comprehensive system for book buying, selling, and management with secure authentication and payment integration.",
+      description: "Seamless book buying, selling, and management with secure authentication and payments.",
       tech: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "JWT", "Stripe"],
-      liveLink: "https://inventory-hub.com", // Replace with actual link
-      githubLink: "https://github.com/yourusername/inventory-hub" // Replace with actual link
-    }
+      github: "https://github.com/yourusername/inventory-hub",
+      live: "https://inventory-hub.com",
+    },
   ];
 
   return (
     <section id="projects" className="py-20">
-      <h2 className="text-3xl font-bold mb-12 text-center">My Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-        {projects.map((project, index) => (
+      <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+        My Projects
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {projects.map((project, idx) => (
           <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            key={project.title}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: idx * 0.2 }}
             viewport={{ once: true }}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
           >
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold">{project.title}</h3>
-                {project.type && (
-                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-sm">
-                    {project.type}
-                  </span>
-                )}
-              </div>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              {(project.liveLink || project.githubLink) && (
-                <div className="flex gap-4 mt-4">
-                  {project.liveLink && (
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-purple-600 hover:text-purple-700 dark:text-purple-400"
+            <Card className="hover:scale-105 transition-transform duration-300 shadow-xl h-full flex flex-col">
+              <CardHeader>
+                <CardTitle>{project.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-gray-600 dark:text-gray-400">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 rounded-full text-xs"
                     >
-                      Live Preview →
-                    </a>
-                  )}
-                  {project.githubLink && (
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-purple-600 hover:text-purple-700 dark:text-purple-400"
-                    >
-                      GitHub →
-                    </a>
-                  )}
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-              )}
-            </div>
+              </CardContent>
+              <CardFooter className="flex gap-4 mt-auto">
+                {project.live && (
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-blue-600 hover:underline">
+                    <ExternalLink className="w-4 h-4" /> Live
+                  </a>
+                )}
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-gray-800 dark:text-gray-200 hover:underline">
+                    <Github className="w-4 h-4" /> GitHub
+                  </a>
+                )}
+              </CardFooter>
+            </Card>
           </motion.div>
         ))}
       </div>

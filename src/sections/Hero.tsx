@@ -1,49 +1,58 @@
-// src/app/sections/Hero.tsx
+// src/sections/Hero.tsx
 "use client";
-
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { TypeAnimation } from "react-type-animation";
+import { Button } from "@/components/ui/button";
+import { Download, Linkedin, Github } from "lucide-react";
+import { SectionWrapper } from "@/components/SectionWrapper";
 
 export function Hero() {
   return (
-    <section className="min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center text-center">
+    <section id="home" className="min-h-screen flex flex-col justify-center items-center">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="space-y-6"
+        transition={{ duration: 0.8, type: "spring" }}
+        className="space-y-8"
       >
-        <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-          Hi, I&apos;m Lakshay Verma 👋
+        <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          Lakshay Verma
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl">
-          Full Stack Web Developer with expertise in MERN Stack, TypeScript, and Vue.js
-        </p>
+        <TypeAnimation
+          sequence={[
+            "Full Stack Web Developer",
+            2000,
+            "MERN | TypeScript | Vue.js",
+            2000,
+            "Problem Solver & Innovator",
+            2000,
+          ]}
+          wrapper="span"
+          speed={50}
+          repeat={Infinity}
+          className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300"
+        />
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="flex gap-4 justify-center flex-wrap"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="flex flex-wrap gap-4 justify-center"
         >
-          <Link
-            href="#projects"
-            className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-          >
-            View Projects
-          </Link>
-          <Link
-            href="#contact"
-            className="px-6 py-3 border border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg hover:bg-purple-600/10 transition-colors"
-          >
-            Contact Me
-          </Link>
-          <a
-            href="/resume.pdf" // You'll need to add your resume PDF to the public folder
-            className="px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"
-            download
-          >
-            Download Resume
-          </a>
+          <Button asChild size="lg" className="gap-2">
+            <a href="/resume.pdf" download>
+              <Download className="w-5 h-5" /> Download Resume
+            </a>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="gap-2">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="w-5 h-5" /> LinkedIn
+            </a>
+          </Button>
+          <Button asChild variant="ghost" size="lg" className="gap-2">
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <Github className="w-5 h-5" /> GitHub
+            </a>
+          </Button>
         </motion.div>
       </motion.div>
     </section>

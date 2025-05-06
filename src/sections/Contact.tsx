@@ -1,46 +1,103 @@
+// src/sections/Contact.tsx
 "use client";
-
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { Mail, Linkedin, Github } from "lucide-react";
 
 export function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you can integrate with EmailJS, Formspree, or your backend
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
+  };
+
   return (
-    <section id="contact" className="py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="max-w-4xl mx-auto text-center"
-      >
-        <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-          I&apos;m always open to new opportunities and collaborations. Feel free to reach out!
-        </p>
-        <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-          <a
-            href="mailto:lakshayverma544@gmail.com"
-            className="px-8 py-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors inline-block"
+    <section id="contact" className="py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
+      <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+        Contact Me
+      </h2>
+      <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+        {/* Contact Info */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, type: "spring" }}
+          viewport={{ once: true }}
+          className="flex-1 space-y-6 text-center md:text-left"
+        >
+          <div className="flex flex-col gap-4 items-center md:items-start">
+            <a href="mailto:lakshayverma544@gmail.com" className="flex items-center gap-2 text-lg text-purple-700 dark:text-purple-300 hover:underline">
+              <Mail className="w-5 h-5" /> lakshayverma544@gmail.com
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-blue-700 dark:text-blue-300 hover:underline">
+              <Linkedin className="w-5 h-5" /> LinkedIn
+            </a>
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-gray-800 dark:text-gray-200 hover:underline">
+              <Github className="w-5 h-5" /> GitHub
+            </a>
+          </div>
+        </motion.div>
+        {/* Contact Form */}
+        <motion.form
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, type: "spring" }}
+          viewport={{ once: true }}
+          onSubmit={handleSubmit}
+          className="flex-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 space-y-6 w-full"
+        >
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              value={form.name}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              required
+              rows={4}
+              value={form.message}
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
           >
-            Send me an email
-          </a>
-          <a
-            href="https://linkedin.com/in/yourprofile" // Replace with your LinkedIn profile
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors inline-block"
-          >
-            LinkedIn Profile
-          </a>
-          <a
-            href="https://github.com/yourusername" // Replace with your GitHub profile
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-4 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors inline-block"
-          >
-            GitHub Profile
-          </a>
-        </div>
-      </motion.div>
+            {submitted ? "Thank you! I'll get back to you." : "Send Message"}
+          </button>
+        </motion.form>
+      </div>
     </section>
   );
 }
