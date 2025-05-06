@@ -1,5 +1,6 @@
 // src/sections/Hero.tsx
 "use client";
+
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,7 @@ import { SectionWrapper } from "@/components/SectionWrapper";
 
 export function Hero() {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center items-center">
+    <SectionWrapper id="home" className="min-h-screen flex flex-col justify-center items-center text-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -18,6 +19,7 @@ export function Hero() {
         <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
           Lakshay Verma
         </h1>
+
         <TypeAnimation
           sequence={[
             "Full Stack Web Developer",
@@ -32,6 +34,7 @@ export function Hero() {
           repeat={Infinity}
           className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300"
         />
+
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -39,22 +42,47 @@ export function Hero() {
           className="flex flex-wrap gap-4 justify-center"
         >
           <Button asChild size="lg" className="gap-2">
-            <a href="/resume.pdf" download>
-              <Download className="w-5 h-5" /> Download Resume
+            <a href="/resume.pdf" download aria-label="Download Resume">
+              <Download className="w-5 h-5" />
+              Download Resume
             </a>
           </Button>
-          <Button asChild variant="outline" size="lg" className="gap-2">
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-              <Linkedin className="w-5 h-5" /> LinkedIn
+
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="gap-2"
+          >
+            <a
+              href="https://linkedin.com/in/lakshayverma123" // ✅ Replace with your actual profile
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit LinkedIn profile"
+            >
+              <Linkedin className="w-5 h-5" />
+              LinkedIn
             </a>
           </Button>
-          <Button asChild variant="ghost" size="lg" className="gap-2">
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-              <Github className="w-5 h-5" /> GitHub
+
+          <Button
+            asChild
+            variant="ghost"
+            size="lg"
+            className="gap-2"
+          >
+            <a
+              href="https://github.com/lakshayverma123" // ✅ Replace with your actual GitHub username
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit GitHub profile"
+            >
+              <Github className="w-5 h-5" />
+              GitHub
             </a>
           </Button>
         </motion.div>
       </motion.div>
-    </section>
+    </SectionWrapper>
   );
 }

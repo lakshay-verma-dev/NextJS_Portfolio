@@ -20,19 +20,14 @@ export function LeetCode() {
         transition={{ duration: 0.5 }}
         className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center"
       >
-        {/* Main Stat Card */}
-        <img
-          src="https://leetcard.jacoblin.cool/lakshay_03?theme=dark&ext=heatmap"
-          alt="Lakshay Verma's LeetCode Stats"
-          className="mx-auto rounded-lg shadow-lg"
-        />
-
-        {/* Compact Style LeetCard */}
-      
+        <div className="w-full h-64 md:h-80 mx-auto flex items-center justify-center">
+          <img
+            src="https://leetcard.jacoblin.cool/lakshay_03?theme=dark&ext=heatmap"
+            alt="Lakshay Verma's LeetCode Stats"
+            className="max-h-full rounded-lg shadow-lg"
+          />
+        </div>
       </motion.div>
-
-      {/* Optional custom info below the cards */}
-     
     </section>
   );
 }
