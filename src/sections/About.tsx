@@ -4,6 +4,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaAward, FaUserGraduate, FaClock } from "react-icons/fa";
+import Image from "next/image";
 
 export function About() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -107,12 +108,7 @@ export function About() {
             animate="animate"
             className="w-64 h-64 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] relative rounded-full overflow-hidden shadow-2xl border-4 border-purple-500"
           >
-            <img
-              src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=500&h=500&facepad=2"
-              alt="Lakshay Verma"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+         </motion.div>
         </div>
 
         {/* Right: Animated text */}
