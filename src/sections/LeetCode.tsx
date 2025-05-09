@@ -1,9 +1,10 @@
 "use client";
-import { JSX, useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaMedal, FaChartLine, FaBolt, FaTrophy } from "react-icons/fa";
+import { SectionWrapper } from "@/components/SectionWrapper";
 
-// Define the shape of the LeetCode stats
 interface LeetCodeStats {
   totalSolved: number;
   easySolved: number;
@@ -35,7 +36,7 @@ export function LeetCode() {
   }, []);
 
   return (
-    <section id="leetcode" className="py-20 px-4 bg-white dark:bg-gray-900">
+    <SectionWrapper id="leetcode">
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -57,13 +58,13 @@ export function LeetCode() {
           <img
             src="https://leetcard.jacoblin.cool/lakshay_03?theme=dark&ext=heatmap"
             alt="Lakshay Verma's LeetCode Stats"
-            className="rounded-lg shadow-2xl border-4 border-yellow-400 dark:border-yellow-500"
+            className="rounded-lg shadow-2xl border-4 border-yellow-400 dark:border-yellow-500 w-full max-w-[500px] md:max-w-[700px]"
           />
         </div>
       </motion.div>
 
       {/* Stats Grid */}
-      {stats && (
+      {stats ? (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,25 +74,29 @@ export function LeetCode() {
         >
           <StatCard
             icon={<FaMedal className="text-orange-500" />}
-            label="Total Solved"
+            label="Total"
             value={stats.totalSolved}
           />
           <StatCard
             icon={<FaChartLine className="text-blue-500" />}
-            label="Easy Problems"
+            label="Easy"
             value={stats.easySolved}
           />
           <StatCard
             icon={<FaBolt className="text-yellow-500" />}
-            label="Medium Problems"
+            label="Medium"
             value={stats.mediumSolved}
           />
           <StatCard
             icon={<FaTrophy className="text-red-500" />}
-            label="Hard Problems"
+            label="Hard"
             value={stats.hardSolved}
           />
         </motion.div>
+      ) : (
+        <p className="text-center text-gray-500 dark:text-gray-400 mt-8">
+          Unable to load LeetCode stats at the moment.
+        </p>
       )}
 
       {/* View LeetCode Profile Button */}
@@ -111,7 +116,7 @@ export function LeetCode() {
           View LeetCode Profile
         </a>
       </motion.div>
-    </section>
+    </SectionWrapper>
   );
 }
 
@@ -119,13 +124,13 @@ function StatCard({ icon, label, value }: StatCardProps) {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center"
+      className="min-w-[120px] bg-gray-100 dark:bg-gray-800 rounded-lg p-4 shadow-md text-center"
     >
-      <div className="text-3xl mb-3">{icon}</div>
-      <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+      <div className="text-2xl mb-2">{icon}</div>
+      <h3 className="text-base font-medium text-gray-800 dark:text-gray-200">
         {label}
       </h3>
-      <p className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mt-1">
+      <p className="text-xl font-bold text-yellow-600 dark:text-yellow-400">
         {value}
       </p>
     </motion.div>
