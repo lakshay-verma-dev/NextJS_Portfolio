@@ -1,38 +1,51 @@
-// src/components/Navbar.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ThemeToggle } from "./ThemeToggle";
 import { motion } from "framer-motion";
+import { ThemeToggle } from "./ThemeToggle";
+import clsx from "clsx";
+
+const navItems = [
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Reviews", href: "#reviews" },
+  { name: "Contact", href: "#contact" },
+];
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Reviews", href: "#reviews" },
-    { name: "Contact", href: "#contact" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <Link
-          href="/"
-          className="text-2xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent tracking-tight"
-        >
-          Lakshay Verma
-        </Link>
-
-        <div className="hidden md:flex items-center space-x-8">
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={clsx(
+        "fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-xl border backdrop-blur-md shadow-md",
+        scrolled
+          ? "bg-white/80 dark:bg-gray-800/80 border-white/20 dark:border-gray-700"
+          : "bg-transparent border-white/10",
+        "w-[80%]"
+      )}
+    >
+      <div className="px-4 py-3 flex items-center justify-between">
+        <div className="hidden md:flex items-center space-x-8 mx-auto">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
               {item.name}
             </Link>
@@ -41,13 +54,14 @@ export const Navbar = () => {
         </div>
 
         <button
-          className="md:hidden p-2 text-gray-700 dark:text-gray-300"
+          className="md:hidden text-gray-700 dark:text-gray-300"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
         >
           <svg
             className="h-6 w-6"
-            fill="none"
             viewBox="0 0 24 24"
+            fill="none"
             stroke="currentColor"
           >
             {isMenuOpen ? (
@@ -70,13 +84,18 @@ export const Navbar = () => {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-4">
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          className="md:hidden px-4 pb-4"
+        >
           <div className="flex flex-col space-y-4 items-center">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 font-medium transition-colors"
+                className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
@@ -84,39 +103,10 @@ export const Navbar = () => {
             ))}
             <ThemeToggle />
           </div>
-        </div>
+        </motion.div>
       )}
-    </nav>
+    </motion.nav>
   );
 };
 
 export default Navbar;
-
-export function SectionWrapper({ children, id }: { children: React.ReactNode, id: string }) {
-  return (
-    <motion.section
-      id={id}
-      initial={{ opacity: 0, y: 60, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, type: "spring" }}
-      viewport={{ once: true, amount: 0.3 }}
-      className="py-20"
-    >
-      {children}
-    </motion.section>
-  );
-}
-
-export function SectionHeader({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.h2
-      initial={{ opacity: 0, x: -40 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, type: "spring" }}
-      viewport={{ once: true }}
-      className="text-3xl md:text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
-    >
-      {children}
-    </motion.h2>
-  );
-}
