@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaMedal, FaChartLine, FaBolt, FaTrophy } from "react-icons/fa";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import Image from "next/image";
 
 interface LeetCodeStats {
   totalSolved: number;
@@ -55,10 +56,12 @@ export function LeetCode() {
         className="max-w-4xl mx-auto mb-12"
       >
         <div className="w-full flex justify-center items-center">
-          <img
-            src="https://leetcard.jacoblin.cool/lakshay_03?theme=dark&ext=heatmap"
+          <Image
+            src="https://leetcard.jacoblin.cool/lakshay_03"
             alt="Lakshay Verma's LeetCode Stats"
-            className="rounded-lg shadow-2xl border-4 border-yellow-400 dark:border-yellow-500 w-full max-w-[500px] md:max-w-[700px]"
+            width={700}
+            height={300}
+            className="rounded-lg shadow-2xl border-4 border-yellow-400 dark:border-yellow-500"
           />
         </div>
       </motion.div>

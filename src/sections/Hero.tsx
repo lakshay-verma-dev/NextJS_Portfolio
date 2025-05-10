@@ -105,7 +105,7 @@ export function Hero() {
           transition={{ duration: 0.8, type: "spring" }}
           className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
         >
-          Hi, I'm{" "}
+          {"Hi, I'm "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
             Lakshay Verma
           </span>
