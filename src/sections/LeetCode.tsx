@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaMedal, FaChartLine, FaBolt, FaTrophy } from "react-icons/fa";
 import { SectionWrapper } from "@/components/SectionWrapper";
