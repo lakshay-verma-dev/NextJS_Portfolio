@@ -1,12 +1,28 @@
 "use client";
+
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import {
-  SiReact, SiVuedotjs, SiTypescript, SiRedux, SiTailwindcss, SiBootstrap,
-  SiNodedotjs, SiExpress, SiPython, SiFastapi,
-  SiMongodb, SiPostgresql, SiDuckdb, SiMysql,
-  SiGit, SiGithub, SiPostman, SiCplusplus
+  SiReact,
+  SiVuedotjs,
+  SiTypescript,
+  SiRedux,
+  SiTailwindcss,
+  SiBootstrap,
+  SiNodedotjs,
+  SiExpress,
+  SiPython,
+  SiFastapi,
+  SiNextdotjs,
+  SiMongodb,
+  SiPostgresql,
+  SiDuckdb,
+  SiMysql,
+  SiGit,
+  SiGithub,
+  SiPostman,
+  SiCplusplus,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import { IconType } from "react-icons";
@@ -15,14 +31,14 @@ const containerVariants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.9 },
-  show: { opacity: 1, y: 0, scale: 1 },
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0 },
 };
 
 interface Skill {
@@ -36,11 +52,12 @@ export function Skills() {
       title: "Frontend",
       skills: [
         { name: "React.js", icon: SiReact },
+        { name: "Next.js", icon: SiNextdotjs },
         { name: "Vue.js", icon: SiVuedotjs },
         { name: "TypeScript", icon: SiTypescript },
         { name: "Redux Toolkit", icon: SiRedux },
         { name: "Tailwind CSS", icon: SiTailwindcss },
-        { name: "React Bootstrap", icon: SiBootstrap },
+        { name: "Bootstrap", icon: SiBootstrap },
       ],
     },
     {
@@ -58,8 +75,7 @@ export function Skills() {
         { name: "MongoDB", icon: SiMongodb },
         { name: "PostgreSQL", icon: SiPostgresql },
         { name: "DuckDB", icon: SiDuckdb },
-        { name: "SQL", icon: SiMysql },
-        { name: "NoSQL", icon: SiMongodb },
+        { name: "MySQL", icon: SiMysql },
       ],
     },
     {
@@ -70,7 +86,7 @@ export function Skills() {
         { name: "Postman", icon: SiPostman },
         { name: "AWS EC2", icon: FaAws },
         { name: "RESTful APIs", icon: SiPostman },
-        { name: "C++ (OOPS)", icon: SiCplusplus },
+        { name: "C++", icon: SiCplusplus },
       ],
     },
   ];
@@ -79,41 +95,35 @@ export function Skills() {
     <SectionWrapper id="skills">
       <SectionHeader>My Skill Set</SectionHeader>
       <motion.div
-        className="max-w-7xl mx-auto px-4"
+        className="max-w-6xl mx-auto px-4 grid gap-16"
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
       >
-        {skillCategories.map((category, categoryIndex) => (
+        {skillCategories.map((category, index) => (
           <motion.div
             key={category.title}
-            className="mb-16"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
-            viewport={{ once: true }}
+            className="bg-gradient-to-tr from-cyan-900/30 to-cyan-400/10 p-6 rounded-2xl shadow-md border border-cyan-500/20"
+            initial="hidden"
+            animate="show"
+            variants={cardVariants}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
           >
-            <h3 className="text-3xl font-semibold mb-8 text-center text-cyan-400 tracking-wide uppercase">
+            <h3 className="text-2xl md:text-3xl font-bold text-center text-cyan-300 mb-6 uppercase tracking-wide">
               {category.title}
             </h3>
-            <motion.div
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
-              {category.skills.map(({ name, icon: Icon }, index) => (
+            <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              {category.skills.map(({ name, icon: Icon }, idx) => (
                 <motion.div
-                  key={index}
+                  key={idx}
+                  className="bg-zinc-800/60 p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:scale-105 hover:shadow-cyan-500/30 transition-all duration-300 border border-cyan-300/10"
                   variants={cardVariants}
-                  className="rounded-2xl p-5 text-center border border-cyan-500/20 bg-black/30 dark:bg-zinc-900/40 
-                    backdrop-blur-md shadow-lg hover:shadow-cyan-500/30 transition duration-300 
-                    text-white hover:scale-105 transform flex flex-col items-center space-y-3"
                 >
                   <Icon className="text-4xl text-cyan-400" />
-                  <span className="text-sm tracking-wider">{name}</span>
+                  <span className="text-sm text-white tracking-wide text-center">
+                    {name}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>

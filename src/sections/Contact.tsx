@@ -37,10 +37,10 @@ export function Contact() {
             <a href="mailto:lakshayverma544@gmail.com" className="flex items-center gap-2 text-lg text-purple-700 dark:text-purple-300 hover:underline">
               <Mail className="w-5 h-5" /> lakshayverma544@gmail.com
             </a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-blue-700 dark:text-blue-300 hover:underline">
+            <a href="https://linkedin.com/in/lakshay-verma-dev" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-blue-700 dark:text-blue-300 hover:underline">
               <Linkedin className="w-5 h-5" /> LinkedIn
             </a>
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-gray-800 dark:text-gray-200 hover:underline">
+            <a href="https://github.com/lakshay-verma-dev" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-gray-800 dark:text-gray-200 hover:underline">
               <Github className="w-5 h-5" /> GitHub
             </a>
           </div>

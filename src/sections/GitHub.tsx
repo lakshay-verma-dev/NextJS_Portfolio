@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import GitHubCalendar from "react-github-calendar";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import Image from "next/image";
 
 export function GitHub() {
   return (
@@ -22,16 +23,20 @@ export function GitHub() {
         transition={{ duration: 0.5 }}
         className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center"
       >
-        <img
+        <Image
           src="https://github-readme-stats.vercel.app/api?username=lakshay-verma-dev&show_icons=true&theme=radical"
           alt="Lakshay Verma's GitHub stats"
-          className="mx-auto rounded-lg shadow-2xl w-full transition-transform hover:scale-105"
+          width={500}
+          height={200}
+          unoptimized // Use this to bypass optimization for external images
+          className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
         />
 
         <img
-          src="https://github-readme-streak-stats.herokuapp.com/?user=lakshay-verma-dev&theme=radical"
+          src="https://streak-stats.demolab.com/?user=lakshay-verma-dev&theme=radical"
           alt="Lakshay Verma's GitHub streak"
-          className="mx-auto rounded-lg shadow-2xl w-full transition-transform hover:scale-105"
+          width="500"
+          height="200"
         />
       </motion.div>
 

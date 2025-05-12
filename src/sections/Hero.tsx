@@ -147,7 +147,11 @@ export function Hero() {
             asChild
             className="gap-2 bg-violet-600 hover:bg-violet-700 text-white p-2"
           >
-            <a href="/resume.pdf" download aria-label="Download Resume">
+            <a
+              href="/resume-lakshayverma.pdf"
+              download
+              aria-label="Download Resume"
+            >
               <Download className="w-5 h-5" />
               Download Resume
             </a>
@@ -158,7 +162,7 @@ export function Hero() {
             className="gap-2 text-violet-500 border-violet-500 hover:bg-violet-700 p-2"
           >
             <a
-              href="https://linkedin.com/in/lakshayverma123"
+              href="https://linkedin.com/in/lakshay-verma-dev"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit LinkedIn profile"
@@ -173,7 +177,7 @@ export function Hero() {
             className="gap-2 text-purple-500 hover:bg-purple-100 p-2"
           >
             <a
-              href="https://github.com/lakshayverma123"
+              href="https://github.com/lakshay-verma-dev"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit GitHub profile"
