@@ -101,7 +101,7 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <ThemeToggle />
+            <ThemeToggle /> 
           </div>
         </motion.div>
       )}

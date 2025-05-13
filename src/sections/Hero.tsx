@@ -5,99 +5,13 @@ import { TypeAnimation } from "react-type-animation";
 import { Button } from "@/components/ui/button";
 import { Download, Linkedin, Github } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import { useEffect, useRef } from "react";
 
 export function Hero() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  // Starry background effect (canvas)
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let particles: {
-      x: number;
-      y: number;
-      radius: number;
-      color: string;
-      vx: number;
-      vy: number;
-    }[] = [];
-    let animationFrameId: number;
-
-    const setCanvasDimensions = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    const initParticles = () => {
-      particles = [];
-      const particleCount = 200;
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5,
-          color: `rgba(255, 255, 255, ${Math.random() * 0.8})`,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-        });
-      }
-    };
-
-    const animate = () => {
-      if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(
-        (particle: {
-          x: number;
-          y: number;
-          radius: number;
-          color: string;
-          vx: number;
-          vy: number;
-        }) => {
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-          ctx.fillStyle = particle.color;
-          ctx.fill();
-          particle.x += particle.vx;
-          particle.y += particle.vy;
-          if (particle.x < 0) particle.x = canvas.width;
-          if (particle.x > canvas.width) particle.x = 0;
-          if (particle.y < 0) particle.y = canvas.height;
-          if (particle.y > canvas.height) particle.y = 0;
-        }
-      );
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    setCanvasDimensions();
-    initParticles();
-    animate();
-
-    window.addEventListener("resize", () => {
-      setCanvasDimensions();
-      initParticles();
-    });
-
-    return () => {
-      window.removeEventListener("resize", setCanvasDimensions);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   return (
     <SectionWrapper
       id="home"
       className="min-h-screen w-full flex items-center justify-center text-center px-4 relative"
     >
-      {/* Starry background */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0 pointer-events-none"
-      ></canvas>
-
       <div className="w-full max-w-3xl mx-auto space-y-6 relative z-10">
         <motion.h1
           initial={{ opacity: 0, y: 40 }}

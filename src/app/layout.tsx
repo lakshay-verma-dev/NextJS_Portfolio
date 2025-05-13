@@ -25,7 +25,7 @@ export default function RootLayout({
           <main className="pt-20">
             {children}
           </main>
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </ThemeProvider>
       </body>
     </html>

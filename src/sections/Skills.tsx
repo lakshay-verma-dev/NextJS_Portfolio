@@ -104,20 +104,20 @@ export function Skills() {
         {skillCategories.map((category, index) => (
           <motion.div
             key={category.title}
-            className="bg-gradient-to-tr from-cyan-900/30 to-cyan-400/10 p-6 rounded-2xl shadow-md border border-cyan-500/20"
+            className="p-6 rounded-2xl shadow-md border"
             initial="hidden"
             animate="show"
             variants={cardVariants}
             transition={{ duration: 0.6, delay: index * 0.2 }}
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-center text-cyan-300 mb-6 uppercase tracking-wide">
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 uppercase tracking-wide">
               {category.title}
             </h3>
             <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
               {category.skills.map(({ name, icon: Icon }, idx) => (
                 <motion.div
                   key={idx}
-                  className="bg-zinc-800/60 p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:scale-105 hover:shadow-cyan-500/30 transition-all duration-300 border border-cyan-300/10"
+                  className="p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:scale-105 hover:shadow-cyan-500/30 transition-all duration-300 border"
                   variants={cardVariants}
                 >
                   <Icon className="text-4xl text-cyan-400" />

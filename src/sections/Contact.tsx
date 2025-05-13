@@ -1,27 +1,28 @@
-// src/sections/Contact.tsx
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github } from "lucide-react";
+import { SectionWrapper } from "@/components/SectionWrapper"; // adjust import path as needed
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you can integrate with EmailJS, Formspree, or your backend
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
-      <h2 className="text-3xl font-bold mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+    <SectionWrapper id="contact">
+      <h2 className="text-3xl font-bold mb-12 text-center text-black dark:text-white">
         Contact Me
       </h2>
       <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-center">
@@ -34,17 +35,31 @@ export function Contact() {
           className="flex-1 space-y-6 text-center md:text-left"
         >
           <div className="flex flex-col gap-4 items-center md:items-start">
-            <a href="mailto:lakshayverma544@gmail.com" className="flex items-center gap-2 text-lg text-purple-700 dark:text-purple-300 hover:underline">
+            <a
+              href="mailto:lakshayverma544@gmail.com"
+              className="flex items-center gap-2 text-lg text-purple-700 dark:text-purple-300 hover:underline"
+            >
               <Mail className="w-5 h-5" /> lakshayverma544@gmail.com
             </a>
-            <a href="https://linkedin.com/in/lakshay-verma-dev" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-blue-700 dark:text-blue-300 hover:underline">
+            <a
+              href="https://linkedin.com/in/lakshay-verma-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-lg text-blue-700 dark:text-blue-300 hover:underline"
+            >
               <Linkedin className="w-5 h-5" /> LinkedIn
             </a>
-            <a href="https://github.com/lakshay-verma-dev" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-gray-800 dark:text-gray-200 hover:underline">
+            <a
+              href="https://github.com/lakshay-verma-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-lg text-gray-800 dark:text-gray-200 hover:underline"
+            >
               <Github className="w-5 h-5" /> GitHub
             </a>
           </div>
         </motion.div>
+
         {/* Contact Form */}
         <motion.form
           initial={{ opacity: 0, x: 40 }}
@@ -55,7 +70,9 @@ export function Contact() {
           className="flex-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 space-y-6 w-full"
         >
           <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
+              Name
+            </label>
             <input
               type="text"
               name="name"
@@ -67,7 +84,9 @@ export function Contact() {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -79,7 +98,9 @@ export function Contact() {
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+            <label htmlFor="message" className="block text-sm font-medium mb-1">
+              Message
+            </label>
             <textarea
               name="message"
               id="message"
@@ -98,6 +119,6 @@ export function Contact() {
           </button>
         </motion.form>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

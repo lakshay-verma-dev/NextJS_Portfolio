@@ -3,6 +3,19 @@ import { motion } from "framer-motion";
 import GitHubCalendar from "react-github-calendar";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+// Dynamically import the streak chart component (client only)
+const GitHubStreak = dynamic(() => import("@/components/GitHubStreak"), {
+  ssr: false,
+  loading: () => <p className="text-center">Loading GitHub streak chart...</p>,
+});
+// top of file
+const GitHubStats = dynamic(() => import("@/components/GitHubStats"), {
+  ssr: false,
+  loading: () => <p className="text-center">Loading GitHub stats...</p>,
+});
+
 
 export function GitHub() {
   return (
@@ -23,21 +36,10 @@ export function GitHub() {
         transition={{ duration: 0.5 }}
         className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center"
       >
-        <Image
-          src="https://github-readme-stats.vercel.app/api?username=lakshay-verma-dev&show_icons=true&theme=radical"
-          alt="Lakshay Verma's GitHub stats"
-          width={500}
-          height={200}
-          unoptimized // Use this to bypass optimization for external images
-          className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
-        />
+        <GitHubStats />
 
-        <img
-          src="https://streak-stats.demolab.com/?user=lakshay-verma-dev&theme=radical"
-          alt="Lakshay Verma's GitHub streak"
-         
-          className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
-        />
+        {/* Client-only GitHub Streak Image */}
+        <GitHubStreak />
       </motion.div>
 
       <motion.div
