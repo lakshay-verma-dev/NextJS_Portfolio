@@ -10,8 +10,8 @@ export function Projects() {
       description:
         "My own responsive, animated portfolio built with Next.js, Tailwind CSS, Framer Motion, and shadcn/ui.",
       tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "shadcn/ui"],
-      github: "https://github.com/lakshay-verma-dev/your-portfolio-repo",
-      live: "https://your-portfolio-domain.com",
+      github: "https://github.com/lakshay-verma-dev/NextJS_Portfolio",
+      live: "https://lakshayverma-portfolio.vercel.app",
     },
     {
       title: "Trade Monitoring Software",
@@ -43,7 +43,7 @@ export function Projects() {
         "Stripe",
       ],
       github: "https://github.com/lakshay-verma-dev/inventory-hub",
-      live: "https://inventory-hub.com",
+      live: "https://inventory-hub-1.onrender.com",
     },
   ];
 
