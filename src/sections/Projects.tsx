@@ -28,6 +28,7 @@ export function Projects() {
       ],
       github: "",
       live: "",
+      tag: "Work", // Added Work tag
     },
     {
       title: "Book Inventory Management System",
@@ -48,7 +49,7 @@ export function Projects() {
   ];
 
   return (
-    <SectionWrapper id="projects" >
+    <SectionWrapper id="projects">
       <h2 className="text-3xl font-bold mb-12 text-center bg-clip-text text-transparent">
         My Projects
       </h2>
@@ -64,6 +65,11 @@ export function Projects() {
           >
             <div className="mb-4">
               <h3 className="text-xl font-bold">{project.title}</h3>
+              {project.tag && (
+                <span className="ml-2 px-2 py-1 text-xs text-white bg-blue-500 rounded-full">
+                  {project.tag}
+                </span>
+              )}
             </div>
             <div className="mb-4 text-gray-600 dark:text-gray-400">
               {project.description}
