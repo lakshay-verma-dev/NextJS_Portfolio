@@ -1,9 +1,9 @@
-// components/GitHubStreak.tsx
 "use client";
 import { useEffect, useState } from "react";
 
 export default function GitHubStreak() {
   const [isClient, setIsClient] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -12,11 +12,22 @@ export default function GitHubStreak() {
   if (!isClient) return null;
 
   return (
-    <img
-      src="https://streak-stats.demolab.com/?user=lakshay-verma-dev&theme=radical"
-      alt="Lakshay Verma's GitHub streak"
-      className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
-      referrerPolicy="no-referrer"
-    />
+    <>
+      {hasError ? (
+        <p className="text-red-500 text-center">
+          Failed to load GitHub streak stats.
+        </p>
+      ) : (
+        <img
+          src="https://streak-stats.demolab.com/?user=lakshay-verma-dev&theme=radical"
+          alt="Lakshay Verma's GitHub streak"
+          className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
+          width={700}
+          height={300}
+          referrerPolicy="no-referrer"
+          onError={() => setHasError(true)}
+        />
+      )}
+    </>
   );
 }

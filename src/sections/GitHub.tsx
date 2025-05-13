@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import GitHubCalendar from "react-github-calendar";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 
 // Dynamically import the streak chart component (client only)

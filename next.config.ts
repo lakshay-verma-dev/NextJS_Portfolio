@@ -13,14 +13,14 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "github-readme-stats.vercel.app",
+        hostname: "github-readme-stats.vercel.app", // ✅ fixed here
       },
       {
         protocol: "https",
         hostname: "github-readme-streak-stats.herokuapp.com",
       },
     ],
-    dangerouslyAllowSVG: true, // only enable if you trust these SVG sources
+    dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 };
