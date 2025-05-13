@@ -32,12 +32,10 @@ export function GitHub() {
           className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
         />
 
-        <Image
+        <img
           src="https://streak-stats.demolab.com/?user=lakshay-verma-dev&theme=radical"
           alt="Lakshay Verma's GitHub streak"
-          width={500}
-          height={200}
-          unoptimized
+         
           className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
         />
       </motion.div>
