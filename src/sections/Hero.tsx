@@ -3,20 +3,43 @@
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { Button } from "@/components/ui/button";
-import { Download, Linkedin, Github } from "lucide-react";
+import { Download, Linkedin, Github, Eye } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import { useState } from "react";
+import { ResumeViewer } from "@/components/ResumeViewer"; // Make sure this path is correct
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", duration: 0.7 } },
+};
 
 export function Hero() {
+  const [showResume, setShowResume] = useState(false);
+
   return (
     <SectionWrapper
       id="home"
       className="min-h-screen w-full flex items-center justify-center text-center px-4 relative"
     >
-      <div className="w-full max-w-3xl mx-auto space-y-6 relative z-10">
+      <ResumeViewer isOpen={showResume} onClose={() => setShowResume(false)} />
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="w-full max-w-3xl mx-auto space-y-6 relative z-10"
+      >
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, type: "spring" }}
+          variants={itemVariants}
           className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
         >
           {"Hi, I'm "}
@@ -26,16 +49,14 @@ export function Hero() {
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          variants={itemVariants}
           className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300"
         >
           <TypeAnimation
             sequence={[
               "Full Stack Web Developer",
               2000,
-              "MERN | TypeScript | Vue.js",
+              "MERN | TypeScript | Vue JS | Next JS",
               2000,
               "Problem Solver & Innovator",
               2000,
@@ -46,26 +67,31 @@ export function Hero() {
           />
         </motion.div>
 
-        <p className="text-gray-500 dark:text-gray-400 text-base md:text-lg leading-relaxed">
+        <motion.p
+          variants={itemVariants}
+          className="text-gray-500 dark:text-gray-400 text-base md:text-lg leading-relaxed"
+        >
           Passionate about building modern full-stack apps with smooth UI,
           scalable architecture, and performance in mind.
-        </p>
+        </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          variants={itemVariants}
           className="flex flex-wrap justify-center gap-4 pt-4"
         >
+          <Button
+            onClick={() => setShowResume(true)}
+            className="gap-2 bg-cyan-600 hover:bg-cyan-700 text-white p-2"
+          >
+            <Eye className="w-5 h-5" />
+            View Resume
+          </Button>
+
           <Button
             asChild
             className="gap-2 bg-violet-600 hover:bg-violet-700 text-white p-2"
           >
-            <a
-              href="/resume-lakshayverma.pdf"
-              download
-              aria-label="Download Resume"
-            >
+            <a href="/resume-lakshayverma.pdf" download>
               <Download className="w-5 h-5" />
               Download Resume
             </a>
@@ -79,7 +105,6 @@ export function Hero() {
               href="https://linkedin.com/in/lakshay-verma-dev"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Visit LinkedIn profile"
             >
               <Linkedin className="w-5 h-5" />
               LinkedIn
@@ -94,14 +119,13 @@ export function Hero() {
               href="https://github.com/lakshay-verma-dev"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Visit GitHub profile"
             >
               <Github className="w-5 h-5" />
               GitHub
             </a>
           </Button>
         </motion.div>
-      </div>
+      </motion.div>
     </SectionWrapper>
   );
 }

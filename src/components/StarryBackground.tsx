@@ -26,7 +26,7 @@ export default function StarryBackground() {
 
     const initParticles = () => {
       particles = [];
-      const particleCount = 200;
+      const particleCount = 250;
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
