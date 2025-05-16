@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper"; // adjust import path as needed
+import { SectionHeader } from "@/components/SectionHeader";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -22,9 +23,7 @@ export function Contact() {
 
   return (
     <SectionWrapper id="contact">
-      <h2 className="text-3xl font-bold mb-12 text-center text-black dark:text-white">
-        Contact Me
-      </h2>
+     <SectionHeader>Contact Me</SectionHeader>
       <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-center">
         {/* Contact Info */}
         <motion.div

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import Image from "next/image";
+import { SectionHeader } from "@/components/SectionHeader";
 
 const LeetCodeCard = dynamic(() => import("@/components/LeetCodeCard"), {
   ssr: false,
@@ -43,14 +44,7 @@ export function LeetCode() {
 
   return (
     <SectionWrapper id="leetcode">
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl font-extrabold mb-12 text-center text-yellow-600 dark:text-yellow-400"
-      >
-        LeetCode Performance
-      </motion.h2>
+      <SectionHeader>LeetCode Performance</SectionHeader>
 
       {/* LeetCard Image */}
       <motion.div
