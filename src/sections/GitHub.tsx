@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import GitHubCalendar from "react-github-calendar";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import dynamic from "next/dynamic";
+import { SectionHeader } from "@/components/SectionHeader";
 
 // Dynamically import the streak chart component (client only)
 const GitHubStreak = dynamic(() => import("@/components/GitHubStreak"), {
@@ -19,14 +20,9 @@ const GitHubStats = dynamic(() => import("@/components/GitHubStats"), {
 export function GitHub() {
   return (
     <SectionWrapper id="github">
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl font-extrabold mb-12 text-center text-purple-600 dark:text-purple-400"
-      >
-        GitHub Contributions
-      </motion.h2>
+     
+       <SectionHeader>GitHub Performance</SectionHeader>
+
 
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ThemeToggle } from "./ThemeToggle";
 import clsx from "clsx";
 
 const navItems = [
@@ -32,14 +31,13 @@ export const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={clsx(
-        "fixed top-4 left-1/2 transform -translate-x-1/2 z-50 rounded-xl border backdrop-blur-md shadow-md",
+        "fixed left-1/2 transform -translate-x-1/2 z-50 w-[90%] mt-4 px-4 py-2 rounded-xl border shadow-lg backdrop-blur-md transition-all duration-300",
         scrolled
-          ? "bg-white/80 dark:bg-gray-800/80 border-white/20 dark:border-gray-700"
-          : "bg-transparent border-white/10",
-        "w-[80%]"
+          ? "bg-transparent border-white/20 dark:border-gray-700"
+          : "bg-transparent border-white/10"
       )}
     >
-      <div className="px-4 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="hidden md:flex items-center space-x-8 mx-auto">
           {navItems.map((item) => (
             <Link
@@ -50,7 +48,6 @@ export const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <ThemeToggle />
         </div>
 
         <button
@@ -101,7 +98,6 @@ export const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <ThemeToggle /> 
           </div>
         </motion.div>
       )}

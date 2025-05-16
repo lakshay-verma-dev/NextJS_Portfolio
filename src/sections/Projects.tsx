@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import { SectionHeader } from "@/components/SectionHeader";
 
 export function Projects() {
   const projects = [
@@ -50,9 +51,8 @@ export function Projects() {
 
   return (
     <SectionWrapper id="projects">
-      <h2 className="text-3xl font-bold mb-12 text-center bg-clip-text">
-        My Projects
-      </h2>
+<SectionHeader>My Projects</SectionHeader>
+    
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {projects.map((project, idx) => (
           <motion.div

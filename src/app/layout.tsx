@@ -2,7 +2,6 @@
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import { Navbar } from "@/components/Navbar"
-import { ThemeToggle } from "@/components/ThemeToggle"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -25,7 +24,7 @@ export default function RootLayout({
           <main className="pt-20">
             {children}
           </main>
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </ThemeProvider>
       </body>
     </html>

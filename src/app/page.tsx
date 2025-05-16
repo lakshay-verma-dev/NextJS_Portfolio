@@ -1,4 +1,5 @@
 import StarryBackground from "@/components/StarryBackground";
+import FloatingCursor from "@/components/FloatingCursor"; // ✅ import here
 import { Hero } from "@/sections/Hero";
 import { Skills } from "@/sections/Skills";
 import { Projects } from "@/sections/Projects";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <StarryBackground />
+      <FloatingCursor /> {/* ✅ add this */}
       <div className="relative z-10">
         <Hero />
         <Skills />
