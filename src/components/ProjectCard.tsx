@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 
@@ -104,37 +103,13 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
         ) : null}
       </div>
 
-      <StyledButton onClick={onViewDetails}>View Details</StyledButton>
+      {/* Gradient Button */}
+      <button
+        onClick={onViewDetails}
+        className="mt-4 w-full py-4 px-12 text-[12px] uppercase tracking-[2.5px] font-bold text-black bg-white rounded-[45px] shadow-[0_8px_15px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out transform cursor-pointer hover:bg-[#02367B] hover:text-white hover:shadow-[0_15px_20px_rgba(2,54,123,0.4)] hover:translate-y-[-7px] active:translate-y-[-1px]"
+      >
+        View Details
+      </button>
     </motion.div>
   );
 }
-
-const StyledButton = styled.button`
-  padding: 1.3em 3em;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
-  color: #000;
-  background-color: #fff;
-  border: none;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-  width: 100%;
-  text-align: center;
-  margin-top: 1rem;
-
-  &:hover {
-    background-color: #23c483;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
-`;

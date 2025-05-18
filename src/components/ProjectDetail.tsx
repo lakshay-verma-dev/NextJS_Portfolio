@@ -100,7 +100,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-red-500"
+          className="absolute top-4 right-4 cursor-pointer text-gray-500 hover:text-red-500"
           aria-label="Close"
         >
           <X size={24} />

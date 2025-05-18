@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { Button } from "@/components/ui/button";
 import { Download, Linkedin, Github, Eye } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { useState } from "react";
@@ -82,6 +81,7 @@ export function Hero() {
           className="flex flex-wrap justify-center gap-4 pt-4"
         >
           <Tooltip.Provider delayDuration={100}>
+            {/* View Resume */}
             <Tooltip.Root>
               <Tooltip.Trigger asChild>
                 <span>
@@ -102,6 +102,7 @@ export function Hero() {
               </Tooltip.Portal>
             </Tooltip.Root>
 
+            {/* Download Resume */}
             <Tooltip.Root>
               <Tooltip.Trigger asChild>
                 <span>
@@ -123,21 +124,21 @@ export function Hero() {
               </Tooltip.Portal>
             </Tooltip.Root>
 
+            {/* LinkedIn */}
             <Tooltip.Root>
               <Tooltip.Trigger asChild>
-                <Button
-                  asChild
-                  className="gap-2 text-violet-500 border-violet-500 hover:bg-violet-700 p-2"
-                >
+                <span>
                   <a
                     href="https://linkedin.com/in/lakshay-verma-dev"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Linkedin className="w-5 h-5" />
-                    LinkedIn
+                    <AnimatedButton
+                      text="LinkedIn"
+                      icon={<Linkedin className="w-5 h-5" />}
+                    />
                   </a>
-                </Button>
+                </span>
               </Tooltip.Trigger>
               <Tooltip.Portal>
                 <Tooltip.Content
@@ -149,21 +150,21 @@ export function Hero() {
               </Tooltip.Portal>
             </Tooltip.Root>
 
+            {/* GitHub */}
             <Tooltip.Root>
               <Tooltip.Trigger asChild>
-                <Button
-                  asChild
-                  className="gap-2 text-purple-500 hover:bg-purple-100 p-2"
-                >
+                <span>
                   <a
                     href="https://github.com/lakshay-verma-dev"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Github className="w-5 h-5" />
-                    GitHub
+                    <AnimatedButton
+                      text="GitHub"
+                      icon={<Github className="w-5 h-5" />}
+                    />
                   </a>
-                </Button>
+                </span>
               </Tooltip.Trigger>
               <Tooltip.Portal>
                 <Tooltip.Content

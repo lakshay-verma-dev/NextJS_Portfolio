@@ -40,7 +40,7 @@ export function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-2 right-2 z-10 text-white bg-red-500 hover:bg-red-600 p-1.5 rounded-full"
+              className="absolute top-2 right-2 z-10 cursor-pointer text-white bg-red-500 hover:bg-red-600 p-1.5 rounded-full"
             >
               <X className="w-5 h-5" />
             </button>

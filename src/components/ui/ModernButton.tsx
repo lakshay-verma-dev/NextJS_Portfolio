@@ -1,127 +1,82 @@
 // components/ModernButton.tsx
+"use client";
+
 import React from "react";
-import styled from "styled-components";
+import { cn } from "@/lib/utils"; // Optional: if using clsx/cn utility
 
 interface ModernButtonProps {
   text: string;
 }
 
 const ModernButton: React.FC<ModernButtonProps> = ({ text }) => {
+  const isGithub = text.toLowerCase().includes("github");
+  const isLeetCode = text.toLowerCase().includes("leetcode");
+
+  const colorClass = isGithub
+    ? {
+        base: "text-purple-400 border-purple-400",
+        hover: "hover:text-[#212121] hover:bg-purple-400",
+        fill: "fill-purple-400 hover:fill-[#212121]",
+        ring: "ring-purple-400",
+      }
+    : isLeetCode
+    ? {
+        base: "text-yellow-300 border-yellow-300",
+        hover: "hover:text-[#212121] hover:bg-yellow-300",
+        fill: "fill-yellow-300 hover:fill-[#212121]",
+        ring: "ring-yellow-300",
+      }
+    : {
+        base: "text-green-400 border-green-400",
+        hover: "hover:text-[#212121] hover:bg-green-400",
+        fill: "fill-green-400 hover:fill-[#212121]",
+        ring: "ring-green-400",
+      };
+
   return (
-    <StyledWrapper>
-      <button className="animated-button" aria-label={text} title={text}>
+    <div className="flex justify-center mt-8">
+      <button
+        className={cn(
+          "relative flex items-center gap-1 px-9 py-4 border-[3px] rounded-full font-semibold text-base shadow-[0_0_0_2px] overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
+          colorClass.base,
+          colorClass.ring,
+          colorClass.hover
+        )}
+        aria-label={text}
+        title={text}
+      >
         <svg
           viewBox="0 0 24 24"
-          className="arr-2"
+          className={cn(
+            "absolute left-[-25%] w-6 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
+            colorClass.fill,
+            "arr-2"
+          )}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
         </svg>
-        <span className="text">{text}</span>
-        <span className="circle" />
+
+        <span className="relative z-10 transition-all duration-700 translate-x-[-12px] group-hover:translate-x-[12px]">
+          {text}
+        </span>
+
+        <span className="absolute top-1/2 left-1/2 z-0 h-5 w-5 rounded-full bg-current opacity-0 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:w-[220px] group-hover:h-[220px] group-hover:opacity-100 -translate-x-1/2 -translate-y-1/2" />
+
         <svg
           viewBox="0 0 24 24"
-          className="arr-1"
+          className={cn(
+            "absolute right-4 w-6 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
+            colorClass.fill,
+            "arr-1"
+          )}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
         </svg>
       </button>
-    </StyledWrapper>
+    </div>
   );
 };
-
-const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-
-  .animated-button {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 16px 36px;
-    border: 4px solid transparent;
-    font-size: 16px;
-    background-color: inherit;
-    border-radius: 100px;
-    font-weight: 600;
-    color: greenyellow;
-    box-shadow: 0 0 0 2px greenyellow;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .animated-button svg {
-    position: absolute;
-    width: 24px;
-    fill: greenyellow;
-    z-index: 9;
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .arr-1 {
-    right: 16px;
-  }
-
-  .arr-2 {
-    left: -25%;
-  }
-
-  .circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background-color: greenyellow;
-    border-radius: 50%;
-    opacity: 0;
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .text {
-    position: relative;
-    z-index: 1;
-    transform: translateX(-12px);
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  .animated-button:hover {
-    box-shadow: 0 0 0 12px transparent;
-    color: #212121;
-    border-radius: 12px;
-  }
-
-  .animated-button:hover .arr-1 {
-    right: -25%;
-  }
-
-  .animated-button:hover .arr-2 {
-    left: 16px;
-  }
-
-  .animated-button:hover .text {
-    transform: translateX(12px);
-  }
-
-  .animated-button:hover svg {
-    fill: #212121;
-  }
-
-  .animated-button:active {
-    scale: 0.95;
-    box-shadow: 0 0 0 4px greenyellow;
-  }
-
-  .animated-button:hover .circle {
-    width: 220px;
-    height: 220px;
-    opacity: 1;
-  }
-`;
 
 export default ModernButton;

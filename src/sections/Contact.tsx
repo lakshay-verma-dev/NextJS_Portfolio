@@ -112,7 +112,7 @@ export function Contact() {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r cursor from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
+            className="w-full py-3 bg-gradient-to-r cursor-pointer from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform"
           >
             {submitted ? "Thank you! I'll get back to you." : "Send Message"}
           </button>
