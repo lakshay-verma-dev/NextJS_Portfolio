@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import Image from "next/image";
 import { SectionHeader } from "@/components/SectionHeader";
+import ModernButton from "@/components/ui/ModernButton";
 
 const LeetCodeCard = dynamic(() => import("@/components/LeetCodeCard"), {
   ssr: false,
@@ -127,9 +128,8 @@ export function LeetCode() {
           href="https://leetcode.com/lakshay_03"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-lg font-semibold shadow hover:scale-105 transition-transform"
         >
-          View LeetCode Profile
+          <ModernButton text="View LeetCode Profile" />
         </a>
       </motion.div>
     </SectionWrapper>

@@ -4,36 +4,31 @@ import GitHubCalendar from "react-github-calendar";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import dynamic from "next/dynamic";
 import { SectionHeader } from "@/components/SectionHeader";
+import ModernButton from "@/components/ui/ModernButton";
 
-// Dynamically import the streak chart component (client only)
+// Dynamic imports
 const GitHubStreak = dynamic(() => import("@/components/GitHubStreak"), {
   ssr: false,
   loading: () => <p className="text-center">Loading GitHub streak chart...</p>,
 });
-// top of file
 const GitHubStats = dynamic(() => import("@/components/GitHubStats"), {
   ssr: false,
   loading: () => <p className="text-center">Loading GitHub stats...</p>,
 });
 
-
 export function GitHub() {
   return (
     <SectionWrapper id="github">
-     
-       <SectionHeader>GitHub Performance</SectionHeader>
-
+      <SectionHeader>GitHub Performance</SectionHeader>
 
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-center"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"
       >
         <GitHubStats />
-
-        {/* Client-only GitHub Streak Image */}
         <GitHubStreak />
       </motion.div>
 
@@ -44,11 +39,11 @@ export function GitHub() {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="mt-16 text-center"
       >
-        <h3 className="text-2xl font-bold text-purple-500 dark:text-purple-300 mb-6">
+        <h3 className="text-xl sm:text-2xl font-bold text-purple-500 dark:text-purple-300 mb-6">
           GitHub Contribution Calendar
         </h3>
         <div className="overflow-x-auto flex justify-center">
-          <div className="inline-block">
+          <div className="inline-block min-w-[320px] sm:min-w-[500px]">
             <GitHubCalendar
               username="lakshay-verma-dev"
               blockSize={15}
@@ -58,21 +53,19 @@ export function GitHub() {
           </div>
         </div>
       </motion.div>
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="mt-12 text-center"
+        className="mt-12"
       >
         <a
           href="https://github.com/lakshay-verma-dev"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-lg font-semibold shadow-lg hover:scale-110 transition-transform duration-300"
         >
-          View GitHub Profile
+          <ModernButton text="Visit Github Profile" />
         </a>
       </motion.div>
     </SectionWrapper>

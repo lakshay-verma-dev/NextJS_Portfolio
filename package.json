@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.2",
     "@radix-ui/react-toast": "^1.2.11",
+    "@radix-ui/react-tooltip": "^1.2.6",
     "class-variance-authority": "^0.7.1",
     "framer-motion": "^12.9.4",
     "lucide-react": "^0.506.0",

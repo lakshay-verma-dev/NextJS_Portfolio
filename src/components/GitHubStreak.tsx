@@ -21,9 +21,7 @@ export default function GitHubStreak() {
         <img
           src="https://streak-stats.demolab.com/?user=lakshay-verma-dev&theme=radical"
           alt="Lakshay Verma's GitHub streak"
-          className="mx-auto rounded-lg shadow-2xl w-full transition-transform"
-          width={700}
-          height={300}
+          className="w-full max-w-[600px] h-[100%] object-contain mx-auto rounded-lg shadow-2xl transition-transform"
           referrerPolicy="no-referrer"
           onError={() => setHasError(true)}
         />

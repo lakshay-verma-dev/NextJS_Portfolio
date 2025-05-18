@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
 
-export function SectionHeader({ children }: { children: React.ReactNode }) {
+export function SectionHeader({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     <motion.h2
-      initial={{ opacity: 0, x: -40 }}
+      initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, type: "spring" }}
+      transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
       viewport={{ once: true }}
-      className="text-3xl md:text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"
+      className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center leading-tight mb-12 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent ${className}`}
     >
       {children}
     </motion.h2>
   );
-} 
+}

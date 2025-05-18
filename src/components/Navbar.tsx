@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
 const navItems = [
@@ -31,9 +31,9 @@ export const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={clsx(
-        "fixed left-1/2 transform -translate-x-1/2 z-50 w-[90%] mt-4 px-4 py-2 rounded-xl border shadow-lg backdrop-blur-md transition-all duration-300",
+        "fixed left-1/2 transform -translate-x-1/2 z-[50] w-[90%] mt-4 px-4 py-2 rounded-xl border shadow-lg transition-all duration-300",
         scrolled
-          ? "bg-transparent border-white/20 dark:border-gray-700"
+          ? "bg-white/80 dark:bg-gray-900/80 border-white/20 dark:border-gray-700 backdrop-blur-lg"
           : "bg-transparent border-white/10"
       )}
     >
@@ -80,27 +80,29 @@ export const Navbar = () => {
         </button>
       </div>
 
-      {isMenuOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          className="md:hidden px-4 pb-4"
-        >
-          <div className="flex flex-col space-y-4 items-center">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden px-4 pb-4"
+          >
+            <div className="flex flex-col space-y-4 items-center">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

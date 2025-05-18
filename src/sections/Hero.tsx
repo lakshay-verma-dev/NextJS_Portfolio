@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Download, Linkedin, Github, Eye } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { useState } from "react";
-import { ResumeViewer } from "@/components/ResumeViewer"; // Make sure this path is correct
+import { ResumeViewer } from "@/components/ResumeViewer";
+import AnimatedButton from "@/components/ui/AnimatedButton";
+import * as Tooltip from "@radix-ui/react-tooltip";
 
 const containerVariants = {
   hidden: {},
@@ -79,51 +81,100 @@ export function Hero() {
           variants={itemVariants}
           className="flex flex-wrap justify-center gap-4 pt-4"
         >
-          <Button
-            onClick={() => setShowResume(true)}
-            className="gap-2 bg-cyan-600 hover:bg-cyan-700 text-white p-2"
-          >
-            <Eye className="w-5 h-5" />
-            View Resume
-          </Button>
+          <Tooltip.Provider delayDuration={100}>
+            <Tooltip.Root>
+              <Tooltip.Trigger asChild>
+                <span>
+                  <AnimatedButton
+                    text="View Resume"
+                    icon={<Eye className="w-5 h-5" />}
+                    onClick={() => setShowResume(true)}
+                  />
+                </span>
+              </Tooltip.Trigger>
+              <Tooltip.Portal>
+                <Tooltip.Content
+                  side="top"
+                  className="rounded bg-black px-2 py-1 mb-1.5 text-white text-sm shadow-md"
+                >
+                  Open PDF Viewer
+                </Tooltip.Content>
+              </Tooltip.Portal>
+            </Tooltip.Root>
 
-          <Button
-            asChild
-            className="gap-2 bg-violet-600 hover:bg-violet-700 text-white p-2"
-          >
-            <a href="/resume-lakshayverma.pdf" download>
-              <Download className="w-5 h-5" />
-              Download Resume
-            </a>
-          </Button>
+            <Tooltip.Root>
+              <Tooltip.Trigger asChild>
+                <span>
+                  <a href="/resume-lakshayverma.pdf" download>
+                    <AnimatedButton
+                      text="Download Resume"
+                      icon={<Download className="w-5 h-5" />}
+                    />
+                  </a>
+                </span>
+              </Tooltip.Trigger>
+              <Tooltip.Portal>
+                <Tooltip.Content
+                  side="top"
+                  className="rounded bg-black px-2 py-1 mb-1.5 text-white text-sm shadow-md"
+                >
+                  Download as PDF
+                </Tooltip.Content>
+              </Tooltip.Portal>
+            </Tooltip.Root>
 
-          <Button
-            asChild
-            className="gap-2 text-violet-500 border-violet-500 hover:bg-violet-700 p-2"
-          >
-            <a
-              href="https://linkedin.com/in/lakshay-verma-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin className="w-5 h-5" />
-              LinkedIn
-            </a>
-          </Button>
+            <Tooltip.Root>
+              <Tooltip.Trigger asChild>
+                <Button
+                  asChild
+                  className="gap-2 text-violet-500 border-violet-500 hover:bg-violet-700 p-2"
+                >
+                  <a
+                    href="https://linkedin.com/in/lakshay-verma-dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                    LinkedIn
+                  </a>
+                </Button>
+              </Tooltip.Trigger>
+              <Tooltip.Portal>
+                <Tooltip.Content
+                  side="top"
+                  className="rounded bg-black px-2 py-1 mb-1.5 text-white text-sm shadow-md"
+                >
+                  Visit LinkedIn Profile
+                </Tooltip.Content>
+              </Tooltip.Portal>
+            </Tooltip.Root>
 
-          <Button
-            asChild
-            className="gap-2 text-purple-500 hover:bg-purple-100 p-2"
-          >
-            <a
-              href="https://github.com/lakshay-verma-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="w-5 h-5" />
-              GitHub
-            </a>
-          </Button>
+            <Tooltip.Root>
+              <Tooltip.Trigger asChild>
+                <Button
+                  asChild
+                  className="gap-2 text-purple-500 hover:bg-purple-100 p-2"
+                >
+                  <a
+                    href="https://github.com/lakshay-verma-dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="w-5 h-5" />
+                    GitHub
+                  </a>
+                </Button>
+              </Tooltip.Trigger>
+              <Tooltip.Portal>
+                <Tooltip.Content
+                  side="top"
+                  className="rounded bg-black px-2 py-1 mb-1.5 text-white text-sm shadow-md"
+                >
+                  Visit GitHub Profile
+                </Tooltip.Content>
+              </Tooltip.Portal>
+            </Tooltip.Root>
+          </Tooltip.Provider>
         </motion.div>
       </motion.div>
     </SectionWrapper>

@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --z-navbar: 50;
+  --z-modal-backdrop: 90;
+  --z-modal-content: 100;
+  --z-resume-viewer: 150;
 }
 
 @theme inline {
@@ -23,4 +27,347 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navbar base styles */
+.navbar {
+  z-index: var(--z-navbar);
+}
+
+/* Resume Viewer Styles */
+.resume-viewer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: var(--z-modal-backdrop);
+}
+
+.resume-viewer-content {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-resume-viewer);
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+/* Blur effect for the entire website when resume is open */
+body.resume-open {
+  overflow: hidden;
+}
+
+body.resume-open .navbar {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+/* Project Detail Styles */
+.project-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: var(--z-modal-backdrop);
+}
+
+.project-detail-content {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal-content);
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+/* Blur effect for the entire website when project detail is open */
+body.project-detail-open {
+  overflow: hidden;
+}
+
+body.project-detail-open .navbar {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+/* Project Detail Modal Styles */
+.project-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 40;
+}
+
+.project-detail-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.project-detail-content {
+  position: relative;
+  width: 100%;
+  max-width: 80rem;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Dark mode styles */
+.dark .project-detail-content {
+  background-color: #1f2937;
+}
+
+/* Project Image Container */
+.project-image-container {
+  position: relative;
+  height: 16rem;
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.project-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Image Gradient Overlay */
+.project-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 1.5rem;
+}
+
+/* Tab Styles */
+.project-tabs {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+  padding: 0 1.5rem;
+}
+
+.dark .project-tabs {
+  border-color: #374151;
+}
+
+.project-tab-button {
+  padding: 0.75rem 0;
+  font-weight: 500;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.project-tab-button:hover {
+  color: #1f2937;
+}
+
+.dark .project-tab-button:hover {
+  color: #e5e7eb;
+}
+
+.project-tab-button.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
+/* Content Area */
+.project-content {
+  padding: 1.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar */
+.project-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-content::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+.project-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+/* Info Cards */
+.project-info-card {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.dark .project-info-card {
+  background-color: rgba(31, 41, 55, 0.5);
+}
+
+/* Feature List */
+.project-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.project-feature-item::before {
+  content: "•";
+  color: #2563eb;
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* Tech Stack Tags */
+.tech-stack-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0.25rem;
+}
+
+.dark .tech-stack-tag {
+  background-color: rgba(75, 85, 99, 0.3);
+  color: #e5e7eb;
+}
+
+/* Links */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: #1d4ed8;
+}
+
+.dark .project-link {
+  color: #60a5fa;
+}
+
+.dark .project-link:hover {
+  color: #93c5fd;
+}
+
+/* Close Button */
+.project-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.project-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #1f2937;
+}
+
+.dark .project-close-button {
+  background-color: rgba(31, 41, 55, 0.5);
+  color: #9ca3af;
+}
+
+.dark .project-close-button:hover {
+  background-color: rgba(31, 41, 55, 0.7);
+  color: #e5e7eb;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.project-detail-backdrop {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.project-detail-content {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .project-detail-content {
+    margin: 0;
+    border-radius: 0;
+    height: 100vh;
+  }
+
+  .project-image-container {
+    height: 12rem;
+  }
+
+  .project-tabs {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .project-content {
+    padding: 1rem;
+  }
+}
+
+/* Grid Layouts */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
 }

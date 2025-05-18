@@ -16,7 +16,7 @@ export function SectionWrapper({
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.7, type: "spring" }}
       viewport={{ once: true, amount: 0.3 }}
-      className={`py-20 ${className}`}
+      className={`py-20 px-4 sm:px-6 lg:px-8 w-full max-w-screen-xl mx-auto ${className}`}
     >
       {children}
     </motion.section>

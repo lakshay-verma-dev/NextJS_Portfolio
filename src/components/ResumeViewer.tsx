@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 interface ResumeViewerProps {
   isOpen: boolean;
@@ -10,57 +10,46 @@ interface ResumeViewerProps {
 }
 
 export function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center px-4"
+          className="fixed inset-0 z-[1000] backdrop-blur-sm bg-black/40 flex items-start justify-center pt-24 px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onClick={onClose}
         >
           <motion.div
-            className="relative bg-white dark:bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-xl"
-            initial={{ scale: 0.8, opacity: 0 }}
+            className="relative w-full max-w-4xl h-[80vh] bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-2xl"
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            exit={{ scale: 0.95, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()} // Prevent closing on internal click
           >
-            {/* Close Button */}
+            {/* Close button */}
             <button
-              className="absolute top-3 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500"
               onClick={onClose}
-              aria-label="Close resume viewer"
+              className="absolute top-2 right-2 z-10 text-white bg-red-500 hover:bg-red-600 p-1.5 rounded-full"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
 
-            {/* Resume PDF */}
             <iframe
               src="/resume-lakshayverma.pdf"
-              className="w-full h-[75vh]"
+              className="w-full h-full"
               title="Lakshay Verma Resume"
-            ></iframe>
-
-            {/* Action Buttons */}
-            <div className="p-4 flex justify-end gap-4 bg-gray-100 dark:bg-gray-800">
-              <Button
-                onClick={onClose}
-                className="px-4 py-2"
-              >
-                Close
-              </Button>
-
-              <Button
-                asChild
-                className="gap-2 bg-violet-600 hover:bg-violet-700 text-white"
-              >
-                <a href="/resume-lakshayverma.pdf" download>
-                  <Download className="w-5 h-5" />
-                  Download
-                </a>
-              </Button>
-            </div>
+            />
           </motion.div>
         </motion.div>
       )}

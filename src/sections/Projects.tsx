@@ -3,50 +3,9 @@
 import { useState } from "react";
 import { ProjectCard, Project } from "@/components/ProjectCard";
 import { ProjectDetail } from "@/components/ProjectDetail";
-
-const projects: Project[] = [
-  {
-    title: "Personal Portfolio Website",
-    description:
-      "My own responsive, animated portfolio built with Next.js, Tailwind CSS, Framer Motion, and shadcn/ui.",
-    tech: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "shadcn/ui"],
-    github: "https://github.com/lakshay-verma-dev/NextJS_Portfolio",
-    live: "https://lakshayverma-portfolio.vercel.app",
-  },
-  {
-    title: "Trade Monitoring Software",
-    description:
-      "Real-time options market data, trade notifications, and role-based dashboards.",
-    tech: [
-      "React",
-      "Redux",
-      "Python",
-      "FastAPI",
-      "Bootstrap",
-      "PostgreSQL",
-      "AWS EC2",
-    ],
-    github: "",
-    live: "",
-    tag: "Work",
-  },
-  {
-    title: "Book Inventory Management System",
-    description:
-      "Seamless book buying, selling, and management with secure authentication and payments.",
-    tech: [
-      "React.js",
-      "Redux Toolkit",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "JWT",
-      "Stripe",
-    ],
-    github: "https://github.com/Lakshay-22/Book-Inventory-Management",
-    live: "",
-  },
-];
+import { SectionWrapper } from "@/components/SectionWrapper";
+import { SectionHeader } from "@/components/SectionHeader";
+import { personalProjects, companyProjects } from "@/assets/Projects"; // ✅ import data
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -60,25 +19,48 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="max-w-6xl mx-auto px-6 py-12">
-      <h2 className="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">
-        Projects
-      </h2>
+    <SectionWrapper id="projects">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <SectionHeader>Projects</SectionHeader>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, idx) => (
-          <ProjectCard
-            key={project.title}
-            project={project}
-            idx={idx}
-            onViewDetails={() => openDetail(project)}
-          />
-        ))}
+        {/* Personal Projects Section */}
+        <div>
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
+            Personal Projects
+          </h3>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+            {personalProjects.map((project, idx) => (
+              <ProjectCard
+                key={project.title}
+                project={project}
+                idx={idx}
+                onViewDetails={() => openDetail(project)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Work Projects Section */}
+        <div>
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
+            Work Projects
+          </h3>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {companyProjects.map((project, idx) => (
+              <ProjectCard
+                key={project.title}
+                project={project}
+                idx={idx}
+                onViewDetails={() => openDetail(project)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {selectedProject && (
+          <ProjectDetail project={selectedProject} onClose={closeDetail} />
+        )}
       </div>
-
-      {selectedProject && (
-        <ProjectDetail project={selectedProject} onClose={closeDetail} />
-      )}
-    </section>
+    </SectionWrapper>
   );
 }

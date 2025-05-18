@@ -1,154 +1,225 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Github, X } from "lucide-react";
 
 interface ProjectDetailProps {
-  project: {
-    title: string;
-    description: string;
-    tech: string[];
-    github: string;
-    live: string;
-    extraInfo?: string;
-  };
+  project: Project;
   onClose: () => void;
 }
 
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
-  const [activeTab, setActiveTab] = useState<"details" | "info">("details");
+  const [activeTab, setActiveTab] = useState<"overview" | "features" | "tech">("overview");
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
 
   return (
-    <>
-      {/* Backdrop */}
-      <div
-        onClick={onClose}
-        className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-        aria-hidden="true"
-      />
-
+    <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-        transition={{ duration: 0.3 }}
-        className="fixed max-w-3xl w-full top-20 left-1/2 -translate-x-1/2 z-50 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 overflow-auto max-h-[80vh]"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="project-detail-title"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-50"
       >
-        <button
+        {/* Backdrop with blur effect */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 font-bold text-2xl leading-none"
-          aria-label="Close project details"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+          aria-hidden="true"
+        />
+
+        {/* Modal Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 overflow-y-auto"
         >
-          ×
-        </button>
+          <div className="min-h-full flex items-center justify-center p-4">
+            <div className="relative w-full max-w-5xl bg-white dark:bg-gray-800 rounded-2xl shadow-2xl">
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                aria-label="Close project details"
+              >
+                <X className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+              </button>
 
-        <h2
-          id="project-detail-title"
-          className="text-3xl font-bold mb-4 text-gray-900 dark:text-white"
-        >
-          {project.title}
-        </h2>
-
-        {/* Tabs */}
-        <div className="flex space-x-4 border-b border-gray-300 dark:border-gray-700 mb-6">
-          <button
-            onClick={() => setActiveTab("details")}
-            className={`pb-2 font-medium ${
-              activeTab === "details"
-                ? "border-b-2 border-blue-600 text-blue-600"
-                : "text-gray-600 dark:text-gray-400"
-            }`}
-          >
-            Details
-          </button>
-          <button
-            onClick={() => setActiveTab("info")}
-            className={`pb-2 font-medium ${
-              activeTab === "info"
-                ? "border-b-2 border-blue-600 text-blue-600"
-                : "text-gray-600 dark:text-gray-400"
-            }`}
-          >
-            Info
-          </button>
-        </div>
-
-        {/* Tab Content */}
-        {activeTab === "details" && (
-          <div>
-            <p className="mb-4 text-gray-700 dark:text-gray-300">
-              {project.description}
-            </p>
-
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">
-              Tech Stack
-            </h3>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs px-3 py-1 rounded-full"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "info" && (
-          <div className="text-gray-700 dark:text-gray-300">
-            <div className="flex flex-col gap-3">
-              <div>
-                <strong>Live Preview:</strong>{" "}
-                {project.live ? (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline flex items-center gap-1"
-                  >
-                    <ExternalLink className="w-4 h-4" /> Visit Site
-                  </a>
-                ) : (
-                  <span className="italic text-gray-500">Not available</span>
+              {/* Header with Image */}
+              <div className="relative">
+                {project.imageUrl && (
+                  <div className="h-64 w-full overflow-hidden rounded-t-2xl">
+                    <img
+                      src={project.imageUrl}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 )}
-              </div>
-
-              <div>
-                <strong>GitHub Repository:</strong>{" "}
-                {project.github ? (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-800 dark:text-gray-200 hover:underline flex items-center gap-1"
-                  >
-                    <Github className="w-4 h-4" /> View Code
-                  </a>
-                ) : (
-                  <span className="italic text-gray-500">
-                    Private / Not available
-                  </span>
-                )}
-              </div>
-
-              {project.extraInfo && (
-                <div className="mt-4">
-                  <strong>Additional Info:</strong>
-                  <p className="mt-1 text-gray-600 dark:text-gray-400">
-                    {project.extraInfo}
-                  </p>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                  <h2 className="text-3xl font-bold text-white">
+                    {project.title}
+                  </h2>
                 </div>
-              )}
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                {/* Tabs */}
+                <div className="flex space-x-6 border-b border-gray-200 dark:border-gray-700 mb-6">
+                  {["overview", "features", "tech"].map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab as typeof activeTab)}
+                      className={`pb-3 font-medium capitalize transition-colors ${
+                        activeTab === tab
+                          ? "border-b-2 border-blue-600 text-blue-600"
+                          : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Tab Content */}
+                <div className="max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
+                  {activeTab === "overview" && (
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">
+                          Overview
+                        </h3>
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                          {project.detailedInfo.overview}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-6">
+                        <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Role</h4>
+                          <p className="text-gray-600 dark:text-gray-400">{project.detailedInfo.role}</p>
+                        </div>
+                        <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Duration</h4>
+                          <p className="text-gray-600 dark:text-gray-400">{project.detailedInfo.duration}</p>
+                        </div>
+                      </div>
+
+                      {project.detailedInfo.impact && (
+                        <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Impact</h4>
+                          <p className="text-gray-600 dark:text-gray-400">{project.detailedInfo.impact}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {activeTab === "features" && (
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">
+                          Key Features
+                        </h3>
+                        <ul className="space-y-3">
+                          {project.detailedInfo.features.map((feature, index) => (
+                            <li key={index} className="flex items-start">
+                              <span className="text-blue-600 mr-2">•</span>
+                              <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-6">
+                        <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">Challenges</h4>
+                          <ul className="space-y-2">
+                            {project.detailedInfo.challenges.map((challenge, index) => (
+                              <li key={index} className="flex items-start">
+                                <span className="text-red-500 mr-2">•</span>
+                                <span className="text-gray-700 dark:text-gray-300">{challenge}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">Learnings</h4>
+                          <ul className="space-y-2">
+                            {project.detailedInfo.learnings.map((learning, index) => (
+                              <li key={index} className="flex items-start">
+                                <span className="text-green-500 mr-2">•</span>
+                                <span className="text-gray-700 dark:text-gray-300">{learning}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "tech" && (
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
+                          Technology Stack
+                        </h3>
+                        <div className="flex flex-wrap gap-3">
+                          {project.tech.map((tech) => (
+                            <span
+                              key={tech}
+                              className="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 px-4 py-2 rounded-full text-sm font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        {project.live && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+                          >
+                            <ExternalLink className="w-5 h-5" />
+                            <span>Live Demo</span>
+                          </a>
+                        )}
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-gray-800 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+                          >
+                            <Github className="w-5 h-5" />
+                            <span>View Source Code</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-        )}
+        </motion.div>
       </motion.div>
-    </>
+    </AnimatePresence>
   );
 }
