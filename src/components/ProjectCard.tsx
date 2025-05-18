@@ -6,15 +6,23 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 
 export type Project = {
+  id: string;
   title: string;
   description: string;
-  detailedDescription?: string;
+  detailedInfo: {
+    overview: string;
+    features: string[];
+    challenges: string[];
+    learnings: string[];
+    role: string;
+    duration: string;
+    impact?: string;
+  };
   tech: string[];
   github?: string;
   live?: string;
   tag?: string;
   type?: "personal" | "company";
-  extraInfo?: string;
 };
 
 interface ProjectCardProps {
@@ -28,7 +36,6 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
 
   return (
     <motion.div
-      key={project.title}
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, delay: idx * 0.2 }}
@@ -41,8 +48,7 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
         </h3>
         {project.tag && (
           <span
-            className={`text-xs font-semibold px-3 py-1 rounded-full border
-            ${
+            className={`text-xs font-semibold px-3 py-1 rounded-full border ${
               project.tag === "In Progress"
                 ? "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 border-yellow-400"
                 : project.tag === "Complete"
@@ -98,13 +104,11 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
         ) : null}
       </div>
 
-      {/* Styled View Details Button */}
       <StyledButton onClick={onViewDetails}>View Details</StyledButton>
     </motion.div>
   );
 }
 
-// Styled View Details Button
 const StyledButton = styled.button`
   padding: 1.3em 3em;
   font-size: 12px;
