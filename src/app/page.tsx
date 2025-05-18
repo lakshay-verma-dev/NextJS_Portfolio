@@ -2,13 +2,11 @@ import StarryBackground from "@/components/StarryBackground";
 import FloatingCursor from "@/components/FloatingCursor"; // ✅ import here
 import { Hero } from "@/sections/Hero";
 import { Skills } from "@/sections/Skills";
-
 import { LeetCode } from "@/sections/LeetCode";
 import { GitHub } from "@/sections/GitHub";
 import { Contact } from "@/sections/Contact";
 import { Challenges } from "@/sections/Challenges";
 import { Projects } from "@/sections/Projects";
-import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -23,7 +21,6 @@ export default function Home() {
         <GitHub />
         <Challenges />
         <Contact />
-        
       </div>
     </>
   );
