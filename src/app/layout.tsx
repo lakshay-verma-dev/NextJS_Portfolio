@@ -12,6 +12,7 @@ export const metadata = {
   description: "A showcase of my software development journey",
 }
 
+
 export default function RootLayout({
   children,
 }: {
