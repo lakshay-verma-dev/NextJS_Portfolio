@@ -1,63 +1,25 @@
 "use client";
-
-import { SectionWrapper } from "@/components/SectionWrapper";
-import { SectionHeader } from "@/components/SectionHeader";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaBookOpen } from "react-icons/fa";
+import { SectionWrapper } from "@/components/SectionWrapper";
+import { SectionHeader } from "@/components/SectionHeader";
+import { challenges, ChallengeData } from "@/assets/Challenge";
+import { ChallengeModal } from "@/components/ChallengeModal";
 
 const containerVariants = {
   hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+  show: { transition: { staggerChildren: 0.1 } },
 };
-
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0 },
 };
 
-interface Challenge {
-  title: string;
-  date: string;
-  description: string;
-  link?: string; // Optional: for "Read more" link to full blog/article
-}
-
-const challenges: Challenge[] = [
-  {
-    title: "Deploying Full Stack App to AWS",
-    date: "March 2024",
-    description:
-      "Faced issues with CORS and server environment configuration. Learned how to set up EC2, security groups, and nginx for reverse proxy.",
-    link: "#",
-  },
-  {
-    title: "Mastering Redux Toolkit",
-    date: "February 2024",
-    description:
-      "Initially struggled with async thunks and state normalization. Eventually understood slice management and used RTK Query for optimization.",
-    link: "#",
-  },
-  {
-    title: "Building a Scalable Auth System",
-    date: "January 2024",
-    description:
-      "Faced edge cases like token expiration and password reset. Learned about JWT, cookie sessions, and used bcrypt for secure storage.",
-    link: "#",
-  },
-  {
-    title: "Responsive UI With Tailwind & Framer Motion",
-    date: "December 2023",
-    description:
-      "Created a dynamic interface with animations and responsive layouts. Solved layout shifting bugs and improved mobile experience.",
-    link: "#",
-  },
-];
-
 export function Challenges() {
+  const [selectedChallenge, setSelectedChallenge] =
+    useState<ChallengeData | null>(null);
+
   return (
     <SectionWrapper id="challenges">
       <SectionHeader>Tech Journey Challenges</SectionHeader>
@@ -68,9 +30,9 @@ export function Challenges() {
         whileInView="show"
         viewport={{ once: true }}
       >
-        {challenges.map((challenge, index) => (
+        {challenges.map((challenge) => (
           <motion.div
-            key={index}
+            key={challenge.id}
             className="p-6 rounded-2xl shadow-md border border-white/10 hover:shadow-cyan-500/20 transition-all duration-300 bg-black/30"
             variants={cardVariants}
           >
@@ -82,21 +44,23 @@ export function Challenges() {
             </div>
             <p className="text-sm text-gray-400 mb-2">{challenge.date}</p>
             <p className="text-base text-white/90 mb-3">
-              {challenge.description}
+              {challenge.shortDescription}
             </p>
-            {challenge.link && (
-              <a
-                href={challenge.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 text-sm hover:underline"
-              >
-                Read more →
-              </a>
-            )}
+            <button
+              onClick={() => setSelectedChallenge(challenge)}
+              className="text-cyan-400 text-sm hover:underline"
+            >
+              Read more →
+            </button>
           </motion.div>
         ))}
       </motion.div>
+
+      <ChallengeModal
+        open={!!selectedChallenge}
+        onClose={() => setSelectedChallenge(null)}
+        challenge={selectedChallenge}
+      />
     </SectionWrapper>
   );
 }

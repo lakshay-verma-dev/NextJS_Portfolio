@@ -1,8 +1,7 @@
-// components/ModernButton.tsx
 "use client";
 
 import React from "react";
-import { cn } from "@/lib/utils"; // Optional: if using clsx/cn utility
+import { cn } from "@/lib/utils"; // or replace with clsx if not using cn
 
 interface ModernButtonProps {
   text: string;
@@ -14,66 +13,52 @@ const ModernButton: React.FC<ModernButtonProps> = ({ text }) => {
 
   const colorClass = isGithub
     ? {
-        base: "text-purple-400 border-purple-400",
-        hover: "hover:text-[#212121] hover:bg-purple-400",
-        fill: "fill-purple-400 hover:fill-[#212121]",
+        base: "text-purple-400 border-purple-400 bg-purple-500/10",
+        hover: "hover:text-black hover:bg-purple-400",
         ring: "ring-purple-400",
+        pulse: "animate-pulse-purple",
       }
     : isLeetCode
     ? {
-        base: "text-yellow-300 border-yellow-300",
-        hover: "hover:text-[#212121] hover:bg-yellow-300",
-        fill: "fill-yellow-300 hover:fill-[#212121]",
+        base: "text-yellow-300 border-yellow-300 bg-yellow-300/10",
+        hover: "hover:text-black hover:bg-yellow-300",
         ring: "ring-yellow-300",
+        pulse: "animate-pulse-yellow",
       }
     : {
-        base: "text-green-400 border-green-400",
-        hover: "hover:text-[#212121] hover:bg-green-400",
-        fill: "fill-green-400 hover:fill-[#212121]",
+        base: "text-green-400 border-green-400 bg-green-400/10",
+        hover: "hover:text-black hover:bg-green-400",
         ring: "ring-green-400",
+        pulse: "animate-pulse-green",
       };
 
   return (
     <div className="flex justify-center mt-8">
       <button
         className={cn(
-          "relative flex items-center gap-1 px-9 py-4 border-[3px] rounded-full font-semibold text-base shadow-[0_0_0_2px] overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
+          "group relative overflow-hidden px-10 py-4 border-2 rounded-full font-bold text-base transition-all duration-300 shadow-lg",
+          "flex items-center justify-center gap-2",
           colorClass.base,
+          colorClass.hover,
           colorClass.ring,
-          colorClass.hover
+          colorClass.pulse
         )}
         aria-label={text}
         title={text}
       >
+        <span className="relative z-10">{text}</span>
+
+        {/* Arrow icon sliding in from right */}
         <svg
-          viewBox="0 0 24 24"
-          className={cn(
-            "absolute left-[-25%] w-6 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
-            colorClass.fill,
-            "arr-2"
-          )}
-          xmlns="http://www.w3.org/2000/svg"
+          className="w-5 h-5 absolute right-4 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
+          fill="currentColor"
+          viewBox="0 0 20 20"
         >
-          <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+          <path d="M10.293 15.707a1 1 0 010-1.414L13.586 11H3a1 1 0 110-2h10.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" />
         </svg>
 
-        <span className="relative z-10 transition-all duration-700 translate-x-[-12px] group-hover:translate-x-[12px]">
-          {text}
-        </span>
-
-        <span className="absolute top-1/2 left-1/2 z-0 h-5 w-5 rounded-full bg-current opacity-0 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:w-[220px] group-hover:h-[220px] group-hover:opacity-100 -translate-x-1/2 -translate-y-1/2" />
-
-        <svg
-          viewBox="0 0 24 24"
-          className={cn(
-            "absolute right-4 w-6 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
-            colorClass.fill,
-            "arr-1"
-          )}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
-        </svg>
+        {/* Expanding ripple effect */}
+        <span className="absolute inset-0 rounded-full scale-0 group-hover:scale-150 opacity-0 group-hover:opacity-10 bg-current transition-all duration-700 ease-in-out" />
       </button>
     </div>
   );
