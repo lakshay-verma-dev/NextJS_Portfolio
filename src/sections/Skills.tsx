@@ -25,6 +25,7 @@ import {
   SiPostman,
   SiCplusplus,
 } from "react-icons/si";
+import { FaServer } from "react-icons/fa";
 import { FaAws } from "react-icons/fa";
 import { IconType } from "react-icons";
 
@@ -78,6 +79,7 @@ export function Skills() {
         { name: "Postman", icon: SiPostman },
         { name: "AWS EC2", icon: FaAws },
         { name: "RESTful APIs", icon: SiPostman },
+        { name: "NGINX", icon: FaServer }, // ✅ New entry
         { name: "C++", icon: SiCplusplus },
       ],
     },
