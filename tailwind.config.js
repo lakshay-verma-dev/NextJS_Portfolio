@@ -8,31 +8,38 @@ module.exports = {
   ],
   theme: {
     extend: {
-      theme: {
-        extend: {
-          keyframes: {
-            pulseGreen: {
-              "0%, 100%": { boxShadow: "0 0 0 0 rgba(34,197,94, 0.5)" },
-              "50%": { boxShadow: "0 0 0 10px rgba(34,197,94, 0)" },
-            },
-            pulsePurple: {
-              "0%, 100%": { boxShadow: "0 0 0 0 rgba(192,132,252, 0.5)" },
-              "50%": { boxShadow: "0 0 0 10px rgba(192,132,252, 0)" },
-            },
-            pulseYellow: {
-              "0%, 100%": { boxShadow: "0 0 0 0 rgba(253,224,71, 0.5)" },
-              "50%": { boxShadow: "0 0 0 10px rgba(253,224,71, 0)" },
-            },
-          },
-          animation: {
-            "pulse-green": "pulseGreen 2.5s infinite",
-            "pulse-purple": "pulsePurple 2.5s infinite",
-            "pulse-yellow": "pulseYellow 2.5s infinite",
+      keyframes: {
+        pulseGreen: {
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(34,197,94, 0.5)" },
+          "50%": { boxShadow: "0 0 0 10px rgba(34,197,94, 0)" },
+        },
+        pulsePurple: {
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(192,132,252, 0.5)" },
+          "50%": { boxShadow: "0 0 0 10px rgba(192,132,252, 0)" },
+        },
+        pulseYellow: {
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(253,224,71, 0.5)" },
+          "50%": { boxShadow: "0 0 0 10px rgba(253,224,71, 0)" },
+        },
+        "border-glow": {
+          to: {
+            transform: "translateX(-25%)",
           },
         },
       },
-
+      animation: {
+        "pulse-green": "pulseGreen 2.5s infinite",
+        "pulse-purple": "pulsePurple 2.5s infinite",
+        "pulse-yellow": "pulseYellow 2.5s infinite",
+        "spin-slow": "spin 2s linear infinite",
+      },
+      backdropBlur: {
+        xs: "2px",
+      },
       colors: {
+        cyan: {
+          950: "#083344",
+        },
         primary: {
           50: "#f5f3ff",
           100: "#ede9fe",
@@ -45,18 +52,6 @@ module.exports = {
           800: "#5b21b6",
           900: "#4c1d95",
           950: "#2e1065",
-        },
-      },
-      keyframes: {
-        "border-glow": {
-          to: {
-            transform: "translateX(-25%)",
-          },
-        },
-      },
-      extend: {
-        animation: {
-          "spin-slow": "spin 2s linear infinite",
         },
       },
     },

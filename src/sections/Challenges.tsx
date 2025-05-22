@@ -11,26 +11,34 @@ const containerVariants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
 };
+
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0 },
 };
 
+const CHALLENGES_TO_SHOW = 4;
+
 export function Challenges() {
   const [selectedChallenge, setSelectedChallenge] =
     useState<ChallengeData | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleChallenges = showAll
+    ? challenges
+    : challenges.slice(0, CHALLENGES_TO_SHOW);
 
   return (
     <SectionWrapper id="challenges">
       <SectionHeader>Tech Journey Challenges</SectionHeader>
+
       <motion.div
         className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8"
         variants={containerVariants}
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
+        animate="show"
       >
-        {challenges.map((challenge) => (
+        {visibleChallenges.map((challenge) => (
           <motion.div
             key={challenge.id}
             className="p-6 rounded-2xl shadow-md border border-white/10 hover:shadow-cyan-500/20 transition-all duration-300 bg-black/30"
@@ -42,7 +50,9 @@ export function Challenges() {
                 {challenge.title}
               </h3>
             </div>
-            <p className="text-sm text-gray-400 mb-2">{challenge.date}</p>
+            <p className="text-sm text-cyan-400 italic mb-2">
+              {challenge.project}
+            </p>
             <p className="text-base text-white/90 mb-3">
               {challenge.shortDescription}
             </p>
@@ -55,6 +65,18 @@ export function Challenges() {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Toggle Button */}
+      {challenges.length > CHALLENGES_TO_SHOW && (
+        <div className="mt-8 text-center">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg shadow transition"
+          >
+            {showAll ? "Show Less" : "Show More"}
+          </button>
+        </div>
+      )}
 
       <ChallengeModal
         open={!!selectedChallenge}

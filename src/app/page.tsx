@@ -7,6 +7,7 @@ import { GitHub } from "@/sections/GitHub";
 import { Contact } from "@/sections/Contact";
 import { Challenges } from "@/sections/Challenges";
 import { Projects } from "@/sections/Projects";
+import { Chatbot } from "@/components/Chatbot";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <GitHub />
         <Challenges />
         <Contact />
+        <Chatbot/>
       </div>
     </>
   );

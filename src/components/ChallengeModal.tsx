@@ -40,8 +40,8 @@ export function ChallengeModal({ open, onClose, challenge }: Props) {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
           {challenge.title}
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          {challenge.date}
+        <p className="text-sm text-cyan-500 dark:text-cyan-400 mb-4 italic">
+          {challenge.project}
         </p>
 
         {/* Tabs */}

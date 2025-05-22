@@ -1,55 +1,92 @@
 export interface ChallengeData {
   id: string;
   title: string;
-  date: string;
+  project: string;
   shortDescription: string;
   fullDescription: string;
   solution: string;
 }
 
 export const challenges: ChallengeData[] = [
+  // =======================
+  // Trading Software (Work)
+  // =======================
   {
-    id: "aws-deploy",
-    title: "Deploying Full Stack App to AWS",
-    date: "March 2024",
+    id: "aws-nginx-ec2",
+    title: "Setting Up Backend on AWS EC2 with NGINX",
+    project: "Trade Monitoring Software",
     shortDescription:
-      "Faced issues with CORS and server environment configuration...",
+      "Faced server accessibility issues due to CORS, firewall, and reverse proxy misconfiguration...",
     fullDescription:
-      "Faced multiple issues including CORS configuration, firewall settings, and EC2 networking. Learned how to correctly set environment variables and handle HTTP headers in production.",
+      "During deployment of the trading backend on EC2, I encountered major challenges with NGINX reverse proxy, port exposure, and CORS headers not aligning between frontend and backend.",
     solution:
-      "Used nginx as a reverse proxy. Configured security groups on AWS EC2. Solved CORS by setting proper headers on the backend and whitelisting frontend origin.",
+      "Configured NGINX correctly as a reverse proxy, adjusted AWS EC2 security groups, and fixed CORS issues with appropriate headers in the backend API.",
   },
   {
-    id: "redux-toolkit",
-    title: "Mastering Redux Toolkit",
-    date: "February 2024",
+    id: "dhan-api-integration",
+    title: "Live Market Data Using Dhan API",
+    project: "Trade Monitoring Software",
     shortDescription:
-      "Initially struggled with async thunks and state normalization...",
+      "Struggled with real-time trade data due to API rate limits and inconsistent responses...",
     fullDescription:
-      "Had trouble understanding how async thunks work and how to structure slices effectively. Normalizing deeply nested data was challenging.",
+      "Needed to integrate Dhan API for real-time option prices. Faced trouble with API authentication, polling strategies, and formatting the data efficiently for charts and tables.",
     solution:
-      "Studied the RTK docs and used createEntityAdapter for normalization. Applied middleware and async thunk best practices with clear loading states.",
+      "Implemented request throttling, optimized the polling strategy using `setInterval`, and cached data to reduce calls. Used a charting lib with a fallback strategy for API failures.",
+  },
+
+  // ==============================
+  // Book Inventory (Personal)
+  // ==============================
+  {
+    id: "user-role-dashboard",
+    title: "Role-Based Dashboard and Access Control",
+    project: "Book Inventory Management System",
+    shortDescription:
+      "Difficulty handling different dashboard views based on user roles (admin, manager)...",
+    fullDescription:
+      "Faced challenges creating scalable layouts for different user roles and protecting routes based on those roles. Ensured secure JWT validation on both client and server sides.",
+    solution:
+      "Created a role-based context provider, used protected routes with middleware, and stored JWT securely in cookies. Conditional rendering was added for each dashboard section.",
   },
   {
-    id: "auth-system",
-    title: "Building a Scalable Auth System",
-    date: "January 2024",
+    id: "auth-lifecycle",
+    title: "Auth System with JWT and Refresh Tokens",
+    project: "Book Inventory Management System",
     shortDescription:
-      "Faced edge cases like token expiration and password reset...",
+      "Issues with token expiration, session handling, and multi-device login...",
     fullDescription:
-      "Issues with session handling, secure token storage, and multi-device login. Explored cookie-based vs. token-based auth methods.",
+      "Initially struggled to persist user sessions correctly across devices and refresh expired tokens without exposing vulnerabilities.",
     solution:
-      "Used JWT with refresh tokens stored in HttpOnly cookies. Used bcrypt for hashing and handled edge cases with proper token lifecycle logic.",
+      "Implemented refresh tokens in HttpOnly cookies, used short-lived access tokens, and added route guards. Bcrypt was used for password security.",
   },
+
+  // =========================================
+  // Personal Portfolio Website (Personal)
+  // =========================================
   {
-    id: "tailwind-motion",
-    title: "Responsive UI With Tailwind & Framer Motion",
-    date: "December 2023",
+    id: "tailwind-framer",
+    title: "Framer Motion and Tailwind Layout Bugs",
+    project: "Personal Portfolio Website",
     shortDescription:
-      "Created a dynamic interface with animations and responsive layouts...",
+      "Animations caused layout shifts and performance issues on mobile devices...",
     fullDescription:
-      "Faced layout shifting bugs and performance issues on low-end devices due to excessive animations and transitions.",
+      "Faced a challenge integrating Framer Motion with Tailwind in a responsive setup. Transitions and layout animations were heavy on mobile devices.",
     solution:
-      "Optimized layout using Tailwind’s responsive utilities. Used framer-motion’s `layout` prop and limited use of heavy animations on mobile.",
+      "Used Tailwind's responsive utilities to limit animations on smaller screens. Optimized framer-motion layout usage and removed redundant transitions.",
+  },
+
+  // ============================
+  // Store Sync (In Progress)
+  // ============================
+  {
+    id: "storage-architecture",
+    title: "Planning Scalable File Storage Architecture",
+    project: "Store Sync",
+    shortDescription:
+      "Finding the right balance between cost-effective storage and access performance...",
+    fullDescription:
+      "Since Store Sync is a file storage app, choosing the right combination of image CDN (ImageKit), database (Neon/PostgreSQL), and file delivery strategy was challenging.",
+    solution:
+      "Researched best practices for CDN integration. Designed backend API that separates metadata from actual file URLs. Used signed URLs and access tokens to prevent abuse.",
   },
 ];

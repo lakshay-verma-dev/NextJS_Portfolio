@@ -62,10 +62,10 @@ export function Contact() {
         >
           <div className="flex flex-col gap-4 items-center md:items-start">
             <a
-              href="mailto:lakshayverma544@gmail.com"
+              href="mailto:lakshayverma.dev@gmail.com"
               className="flex items-center gap-2 text-lg text-purple-700 dark:text-purple-300 hover:underline"
             >
-              <Mail className="w-5 h-5" /> lakshayverma544@gmail.com
+              <Mail className="w-5 h-5" /> lakshayverma.dev@gmail.com
             </a>
             <a
               href="https://linkedin.com/in/lakshay-verma-dev"
@@ -83,6 +83,7 @@ export function Contact() {
             >
               <Github className="w-5 h-5" /> GitHub
             </a>
+           
           </div>
         </motion.div>
 

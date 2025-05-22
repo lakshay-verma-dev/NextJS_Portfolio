@@ -3,6 +3,7 @@
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
+import Tilt from "react-parallax-tilt";
 import {
   SiReact,
   SiVuedotjs,
@@ -27,18 +28,9 @@ import {
 import { FaAws } from "react-icons/fa";
 import { IconType } from "react-icons";
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 interface Skill {
@@ -94,9 +86,9 @@ export function Skills() {
   return (
     <SectionWrapper id="skills">
       <SectionHeader>My Skill Set</SectionHeader>
+
       <motion.div
-        className="max-w-6xl mx-auto px-4 grid gap-16"
-        variants={containerVariants}
+        className="max-w-7xl mx-auto px-6 grid gap-20"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
@@ -104,29 +96,45 @@ export function Skills() {
         {skillCategories.map((category, index) => (
           <motion.div
             key={category.title}
-            className="p-6 rounded-2xl shadow-md border"
-            initial="hidden"
-            animate="show"
+            className="p-6 rounded-3xl border-2 border-cyan-600/20  from-cyan-900/30 to-cyan-800/10 shadow-lg"
             variants={cardVariants}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+            custom={index}
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-6 uppercase tracking-wide">
+            <h3 className="text-3xl font-semibold text-center mb-8 text-cyan-300 uppercase tracking-widest">
               {category.title}
             </h3>
-            <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {category.skills.map(({ name, icon: Icon }, idx) => (
-                <motion.div
+                <Tilt
                   key={idx}
-                  className="p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:scale-105 hover:shadow-cyan-500/30 transition-all duration-300 border"
-                  variants={cardVariants}
+                  tiltMaxAngleX={10}
+                  tiltMaxAngleY={10}
+                  scale={1.05}
+                  transitionSpeed={400}
                 >
-                  <Icon className="text-4xl text-cyan-400" />
-                  <span className="text-sm text-white tracking-wide text-center">
-                    {name}
-                  </span>
-                </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 1 }}
+                    className="bg-cyan-900/30 backdrop-blur-md p-4 rounded-xl flex flex-col items-center justify-center gap-2 border border-cyan-500/20 shadow-cyan-400/10 shadow-md hover:shadow-cyan-500/30 transition-all duration-300 group"
+                  >
+                    <motion.div
+                      className="text-5xl text-cyan-300 group-hover:animate-pulse"
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 2,
+                        ease: "easeInOut",
+                        delay: idx * 0.05,
+                      }}
+                    >
+                      <Icon />
+                    </motion.div>
+                    <span className="text-xs sm:text-sm text-white text-center font-light">
+                      {name}
+                    </span>
+                  </motion.div>
+                </Tilt>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         ))}
       </motion.div>
