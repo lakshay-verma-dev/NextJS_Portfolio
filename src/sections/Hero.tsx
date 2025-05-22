@@ -41,7 +41,7 @@ export function Hero() {
       >
         <motion.h1
           variants={itemVariants}
-          className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
+          className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
         >
           {"Hi, I'm "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">

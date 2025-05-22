@@ -20,7 +20,7 @@ export function ChallengeModal({ open, onClose, challenge }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black bg-opacity-60 flex justify-center pt-24 px-4"
+      className="fixed inset-0 z-50 backdrop-blur-sm bg-white/1 flex justify-center pt-24 px-4"
       style={{ overflowY: "auto" }}
     >
       <div
@@ -30,7 +30,7 @@ export function ChallengeModal({ open, onClose, challenge }: Props) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-red-500 transition"
+          className="absolute top-3 right-3 text-gray-500 hover:text-red-500 transition"
           aria-label="Close"
         >
           <X size={24} />

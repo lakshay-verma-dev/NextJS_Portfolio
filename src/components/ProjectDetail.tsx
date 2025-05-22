@@ -90,7 +90,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black bg-opacity-60 flex justify-center pt-24 px-4"
+      className="fixed inset-0 z-50 backdrop-blur-sm bg-white/10 flex justify-center pt-24 px-4 sm:px-6"
       style={{ overflowY: "auto" }}
     >
       <div
@@ -100,7 +100,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 cursor-pointer text-gray-500 hover:text-red-500"
+          className="absolute top-3 right-3 cursor-pointer text-gray-500 hover:text-red-500 transition"
           aria-label="Close"
         >
           <X size={24} />
@@ -112,12 +112,12 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         </h2>
 
         {/* Tabs */}
-        <nav className="mb-4 flex border-b border-gray-300 dark:border-gray-700">
+        <nav className="mb-4 flex border-b border-gray-300 dark:border-gray-700 overflow-x-auto whitespace-nowrap w-full">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`py-2 px-4 -mb-px border-b-2 font-semibold text-sm ${
+              className={`py-2 px-4 -mb-px border-b-2 font-semibold text-sm flex-shrink-0 ${
                 activeTab === tab
                   ? "border-indigo-600 text-indigo-600 dark:text-indigo-400"
                   : "border-transparent text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
