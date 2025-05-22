@@ -37,7 +37,7 @@ export function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="w-full max-w-3xl mx-auto space-y-6 relative z-10"
+        className="w-full max-w-3xl mx-auto space-y-6 relative"
       >
         <motion.h1
           variants={itemVariants}
@@ -105,10 +105,11 @@ export function Hero() {
             {/* Download Resume */}
             <Tooltip.Root>
               <Tooltip.Trigger asChild>
-                <span>
+                <span >
                   <a href="/resume-lakshayverma.pdf" download>
                     <AnimatedButton
                       text="Download Resume"
+                     
                       icon={<Download className="w-5 h-5" />}
                     />
                   </a>

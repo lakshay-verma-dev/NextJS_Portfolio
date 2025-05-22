@@ -7,16 +7,10 @@ import * as Tooltip from "@radix-ui/react-tooltip";
 
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<
-    { from: "user" | "bot"; text: string }[]
-  >([]);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const handleQuestionClick = (q: string, a: string) => {
-    setMessages((prev) => [
-      ...prev,
-      { from: "user", text: q },
-      { from: "bot", text: a },
-    ]);
+  const toggleQuestion = (index: number) => {
+    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   return (
@@ -29,7 +23,6 @@ export function Chatbot() {
                 onClick={() => setIsOpen(true)}
                 className="w-14 h-14 rounded-full bg-purple-600 text-white flex items-center justify-center 
                 shadow-[0_0_15px_3px_rgba(192,132,252,0.8)] 
-               
                 transition duration-300"
               >
                 <MessageCircle className="w-6 h-6" />
@@ -61,27 +54,18 @@ export function Chatbot() {
 
           <div className="space-y-2">
             {chatbot.map(({ question, answer }, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleQuestionClick(question, answer)}
-                className="w-full text-left bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-2 rounded-md hover:bg-purple-100 dark:hover:bg-purple-800 transition"
-              >
-                {question}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-4 max-h-48 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-200 dark:scrollbar-thumb-purple-600">
-            {messages.map((msg, idx) => (
-              <div
-                key={idx}
-                className={`p-2 text-sm rounded-md max-w-[85%] ${
-                  msg.from === "user"
-                    ? "ml-auto bg-purple-200 dark:bg-purple-700 text-right"
-                    : "mr-auto bg-gray-200 dark:bg-gray-700 text-left"
-                }`}
-              >
-                {msg.text}
+              <div key={idx}>
+                <button
+                  onClick={() => toggleQuestion(idx)}
+                  className="w-full text-left bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 p-2 rounded-md hover:bg-purple-100 dark:hover:bg-purple-800 transition"
+                >
+                  {question}
+                </button>
+                {openIndex === idx && (
+                  <div className="mt-2 ml-2 text-sm bg-purple-50 dark:bg-purple-900 p-2 rounded text-purple-900 dark:text-purple-100">
+                    {answer}
+                  </div>
+                )}
               </div>
             ))}
           </div>
