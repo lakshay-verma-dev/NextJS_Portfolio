@@ -39,7 +39,7 @@ A modern and interactive developer portfolio built using **Next.js (App Router)*
 To run this project locally:
 
 ```bash
-git clone (https://github.com/lakshay-verma-dev/NextJS_Portfolio.git)
+git clone https://github.com/lakshay-verma-dev/NextJS_Portfolio.git
 cd your-repo
 npm install
 npm run dev
