@@ -27,7 +27,7 @@ export const personalProjects: Project[] = [
     title: "Personal Portfolio Website",
     description: "A modern Next.js and TypeScript portfolio showcasing my frontend skills and contributions.",
     detailedInfo: {
-      overview: "A responsive, animated frontend portfolio built with Next.js and TypeScript. Features include GitHub/LeetCode integrations, an interactive resume viewer, custom cursor, and a contact form with toast notifications.",
+      overview: "A responsive, animated frontend portfolio built with Next.js and TypeScript. Features include GitHub/LeetCode integrations, an interactive resume viewer, custom cursor, and a contact form",
       features: [
         "Built entirely with Next.js and TypeScript",
         "Interactive Resume Viewer in modal",
