@@ -13,7 +13,7 @@ A modern and interactive developer portfolio built using **Next.js (App Router)*
 - 🌌 Custom animated cursor and starry background
 - 💻 Project showcase with detailed modal views
 - 🧠 GitHub and LeetCode stats integration
-- 📬 Contact form with **EmailJS** & **Toastify** notifications
+- 📬 Contact form with **EmailJS** 
 - 📱 Fully responsive and mobile-optimized
 
 ---
@@ -25,7 +25,6 @@ A modern and interactive developer portfolio built using **Next.js (App Router)*
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Animation:** [Framer Motion](https://www.framer.com/motion/)
 - **Email Service:** [EmailJS](https://www.emailjs.com/)
-- **Notifications:** [React Toastify](https://fkhadra.github.io/react-toastify/)
 
 ---
 
