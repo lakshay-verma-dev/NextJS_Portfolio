@@ -10,7 +10,7 @@ export default function FloatingCursor() {
 
   const [visible, setVisible] = useState(false);
   const [scale, setScale] = useState(1);
-  const [hoverColor, setHoverColor] = useState("purple");
+  const [hoverColor, setHoverColor] = useState("white");
 
   useEffect(() => {
     const animate = () => {
@@ -69,7 +69,7 @@ export default function FloatingCursor() {
   return (
     <div
       ref={cursorRef}
-      className={`fixed top-0 left-0 w-7 h-7 rounded-full pointer-events-none z-[9999]
+      className={`fixed top-0 left-0 w-5 h-5 rounded-full pointer-events-none z-[9999]
         transition-opacity duration-300 ease-in-out will-change-transform
         ${visible ? "opacity-100" : "opacity-0"}`}
       style={{

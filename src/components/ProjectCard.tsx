@@ -65,7 +65,7 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
       </p>
 
       <div className="flex flex-wrap gap-2 mb-4">
-        {project.tech.map((tech) => (
+        {project.tech.slice(0, 5).map((tech) => (
           <span
             key={tech}
             className="bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs px-3 py-1 rounded-full"

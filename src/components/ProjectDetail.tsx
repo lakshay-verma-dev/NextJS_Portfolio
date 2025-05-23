@@ -14,6 +14,7 @@ const tabs = [
   "Features",
   "Challenges",
   "Learnings",
+  "Tech Used",
   "Other Info",
 ] as const;
 type Tab = (typeof tabs)[number];
@@ -66,6 +67,20 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
           </ul>
         );
 
+      case "Tech Used":
+        return (
+          <div className="flex flex-wrap gap-2">
+            {project.tech.map((techItem, idx) => (
+              <span
+                key={idx}
+                className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full"
+              >
+                {techItem}
+              </span>
+            ))}
+          </div>
+        );
+
       case "Other Info":
         return (
           <div className="text-gray-700 dark:text-gray-300 space-y-2">
@@ -87,6 +102,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         return null;
     }
   };
+  
 
   return (
     <div
