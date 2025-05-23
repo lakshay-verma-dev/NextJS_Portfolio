@@ -40,6 +40,6 @@ To run this project locally:
 
 ```bash
 git clone https://github.com/lakshay-verma-dev/NextJS_Portfolio.git
-cd your-repo
+cd NextJS_Portfolio
 npm install
 npm run dev
