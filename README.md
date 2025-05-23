@@ -2,11 +2,6 @@
 
 A modern and interactive developer portfolio built using **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**. It showcases my skills, projects, coding contributions, and includes smooth animations and a responsive design.
 
-## 🚀 Live Demo
-
-🔗 [Live Site](https://your-live-link.com)  
-💻 [GitHub Repository](https://github.com/yourusername/your-repo)
-
 ---
 
 ## ✨ Features
