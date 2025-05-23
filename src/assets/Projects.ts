@@ -34,7 +34,7 @@ export const personalProjects: Project[] = [
         "Scroll-based animations with Framer Motion",
         "GitHub & LeetCode integration",
         "Custom animated cursor",
-        "Contact form with EmailJS, NodeMailer & Toastify"
+        "Contact form with EmailJS"
       ],
       challenges: [
         "Building smooth animations with performance",
@@ -46,13 +46,13 @@ export const personalProjects: Project[] = [
         "Framer Motion for scroll-based animations",
         "Next.js App Router usage with TypeScript",
         "Frontend form integration with EmailJS and feedback flow",
-        "UI design with Tailwind CSS and shadcn/ui"
+        "UI design with Tailwind CSS and Bootstrap"
       ],
       role: "Frontend Developer",
       duration: "15 days",
       impact: "Improved personal branding and interactive user experience"
     },
-    tech: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion", "shadcn/ui", "EmailJS", "Toastify"],
+    tech: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Framer Motion", "EmailJS", "Bootstrap"],
     github: "https://github.com/lakshay-verma-dev/NextJS_Portfolio",
     live: "https://lakshayverma-portfolio.vercel.app",
     tag: "Complete",
