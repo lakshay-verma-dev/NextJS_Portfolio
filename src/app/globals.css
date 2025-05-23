@@ -359,7 +359,6 @@ body.project-detail-open .navbar {
   }
 }
 
-/* Grid Layouts */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -370,4 +369,34 @@ body.project-detail-open .navbar {
   .project-grid {
     grid-template-columns: 1fr;
   }
+}
+
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(107, 33, 168, 0.6); 
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.3s ease, width 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 33, 168, 0.85);
+  width: 10px;
+}
+
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(107, 33, 168, 0.6) transparent;
 }

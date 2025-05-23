@@ -9,7 +9,7 @@ export const metadata = {
   title: "Lakshay Verma - Software Developer",
   description: "A showcase of my software development journey",
   icons: {
-    icon: "/favicon.png", // This points to your new favicon
+    icon: "/favicon.png", 
   },
 };
 

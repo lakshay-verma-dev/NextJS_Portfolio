@@ -1,4 +1,3 @@
-// src/app/page.tsx or src/pages/index.tsx
 import StarryBackground from "@/components/StarryBackground";
 import FloatingCursor from "@/components/FloatingCursor";
 import { Hero } from "@/sections/Hero";
