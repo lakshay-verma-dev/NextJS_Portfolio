@@ -93,6 +93,7 @@ export const personalProjects: Project[] = [
       "Redux Toolkit",
       "Node.js",
       "Express.js",
+      "Tailwind CSS",
       "MongoDB Atlas",
       "JWT",
       "NodeMailer",
