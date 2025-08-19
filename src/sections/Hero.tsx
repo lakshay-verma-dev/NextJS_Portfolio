@@ -55,7 +55,7 @@ export function Hero() {
         >
           <TypeAnimation
             sequence={[
-              "Full Stack Web Developer",
+              "Full Stack Developer",
               2000,
               "MERN | TypeScript | Vue JS | Next JS",
               2000,
