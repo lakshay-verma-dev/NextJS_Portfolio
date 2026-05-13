@@ -14,9 +14,8 @@ const LeetCodeCard = dynamic(() => import("@/components/LeetCodeCard"), {
 });
 
 interface LeetCodeStats {
-  status: string;
   ranking: number;
-  contributionPoints: number;
+  contributionPoint: number;
 }
 
 export function LeetCode() {
@@ -25,10 +24,10 @@ export function LeetCode() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("https://leetcode-stats-api.herokuapp.com/lakshay_03")
+    fetch("https://leetcode-api-faisalshohag.vercel.app/lakshay_03")
       .then((res) => res.json())
       .then((data: LeetCodeStats) => {
-        if (data.status === "success") {
+        if (data.ranking) {
           setStats(data);
         } else {
           setError(true);
@@ -88,7 +87,7 @@ export function LeetCode() {
           <p className="text-lg font-medium text-gray-800 dark:text-gray-200">
             🚀 Contribution Points:{" "}
             <span className="text-yellow-600 dark:text-yellow-400 font-semibold">
-              {stats.contributionPoints}
+              {stats.contributionPoint}
             </span>
           </p>
         </motion.div>

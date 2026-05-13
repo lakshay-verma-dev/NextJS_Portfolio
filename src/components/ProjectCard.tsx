@@ -47,13 +47,12 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
         </h3>
         {project.tag && (
           <span
-            className={`text-xs font-semibold px-3 py-1 rounded-full border ${
-              project.tag === "In Progress"
+            className={`text-xs font-semibold px-3 py-1 rounded-full border ${project.tag === "In Progress"
                 ? "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 border-yellow-400"
                 : project.tag === "Complete"
-                ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-400"
-                : "bg-gray-200 text-gray-800 border-gray-400"
-            }`}
+                  ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-400"
+                  : "bg-gray-200 text-gray-800 border-gray-400"
+              }`}
           >
             {project.tag}
           </span>
@@ -106,7 +105,7 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
       {/* Gradient Button */}
       <button
         onClick={onViewDetails}
-        className="mt-4 w-full py-4 px-12 text-[12px] uppercase tracking-[2.5px] font-bold text-black bg-white rounded-[45px] shadow-[0_8px_15px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out transform cursor-pointer hover:bg-[#02367B] hover:text-white hover:shadow-[0_15px_20px_rgba(2,54,123,0.4)] hover:translate-y-[-7px] active:translate-y-[-1px]"
+        className="mt-4 w-full py-4 px-12 text-[12px] uppercase tracking-[2.5px] font-bold text-black bg-white rounded-[45px] shadow-[0_8px_15px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out transform cursor-pointer hover:bg-[#02367B] hover:text-white hover:shadow-[0_15px_20px_rgba(2,54,123,0.4)] hover:translate-y-[-4px] active:translate-y-[-1px]"
       >
         View Details
       </button>

@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import {
   SiReact,
-  SiVuedotjs,
   SiTypescript,
   SiRedux,
   SiTailwindcss,
@@ -14,16 +13,15 @@ import {
   SiNodedotjs,
   SiExpress,
   SiPython,
-  SiFastapi,
   SiNextdotjs,
   SiMongodb,
   SiPostgresql,
-  SiDuckdb,
   SiMysql,
   SiGit,
   SiGithub,
   SiPostman,
   SiCplusplus,
+  SiShopify,
 } from "react-icons/si";
 import { FaServer } from "react-icons/fa";
 import { FaAws } from "react-icons/fa";
@@ -46,11 +44,16 @@ export function Skills() {
       skills: [
         { name: "React.js", icon: SiReact },
         { name: "Next.js", icon: SiNextdotjs },
-        { name: "Vue.js", icon: SiVuedotjs },
         { name: "TypeScript", icon: SiTypescript },
         { name: "Redux Toolkit", icon: SiRedux },
         { name: "Tailwind CSS", icon: SiTailwindcss },
         { name: "Bootstrap", icon: SiBootstrap },
+      ],
+    },
+    {
+      title: "E-Commerce",
+      skills: [
+        { name: "Shopify", icon: SiShopify },
       ],
     },
     {
@@ -59,7 +62,6 @@ export function Skills() {
         { name: "Node.js", icon: SiNodedotjs },
         { name: "Express.js", icon: SiExpress },
         { name: "Python", icon: SiPython },
-        { name: "FastAPI", icon: SiFastapi },
       ],
     },
     {
@@ -67,7 +69,6 @@ export function Skills() {
       skills: [
         { name: "MongoDB", icon: SiMongodb },
         { name: "PostgreSQL", icon: SiPostgresql },
-        { name: "DuckDB", icon: SiDuckdb },
         { name: "MySQL", icon: SiMysql },
       ],
     },

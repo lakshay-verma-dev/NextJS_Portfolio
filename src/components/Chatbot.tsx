@@ -21,7 +21,7 @@ export function Chatbot() {
             <Tooltip.Trigger asChild>
               <button
                 onClick={() => setIsOpen(true)}
-                className="w-14 h-14 rounded-full bg-purple-600 text-white flex items-center justify-center 
+                className="w-14 h-14 cursor-pointer rounded-full bg-purple-600 text-white flex items-center justify-center 
                 shadow-[0_0_15px_3px_rgba(192,132,252,0.8)] 
                 transition duration-300"
               >

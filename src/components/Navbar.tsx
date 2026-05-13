@@ -7,6 +7,7 @@ import clsx from "clsx";
 
 const navItems = [
   { name: "About", href: "#about" },
+  { name: "Work", href: "#experience" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Leetcode", href: "#leetcode" },

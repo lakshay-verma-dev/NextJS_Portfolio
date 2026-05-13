@@ -13,19 +13,19 @@ const ModernButton: React.FC<ModernButtonProps> = ({ text }) => {
 
   const colorClass = isGithub
     ? {
-        base: "text-purple-400 border-purple-400 bg-purple-500/10",
-        hover: "hover:text-black hover:bg-purple-400",
-        ring: "ring-purple-400",
-        pulse: "animate-pulse-purple",
-      }
+      base: "text-purple-400 border-purple-400 bg-purple-500/10",
+      hover: "hover:text-black hover:bg-purple-400",
+      ring: "ring-purple-400",
+      pulse: "animate-pulse-purple",
+    }
     : isLeetCode
-    ? {
+      ? {
         base: "text-yellow-300 border-yellow-300 bg-yellow-300/10",
         hover: "hover:text-black hover:bg-yellow-300",
         ring: "ring-yellow-300",
         pulse: "animate-pulse-yellow",
       }
-    : {
+      : {
         base: "text-green-400 border-green-400 bg-green-400/10",
         hover: "hover:text-black hover:bg-green-400",
         ring: "ring-green-400",
@@ -36,7 +36,7 @@ const ModernButton: React.FC<ModernButtonProps> = ({ text }) => {
     <div className="flex justify-center mt-8">
       <button
         className={cn(
-          "group relative overflow-hidden px-10 py-4 border-2 rounded-full font-bold text-base transition-all duration-300 shadow-lg",
+          "group cursor-pointer relative overflow-hidden px-10 py-4 border-2 rounded-full font-bold text-base transition-all duration-300 shadow-lg",
           "flex items-center justify-center gap-2",
           colorClass.base,
           colorClass.hover,

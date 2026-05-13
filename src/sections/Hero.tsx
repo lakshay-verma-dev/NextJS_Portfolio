@@ -55,7 +55,7 @@ export function Hero() {
         >
           <TypeAnimation
             sequence={[
-              "Full Stack Developer",
+              "Software Developer",
               2000,
               "MERN | TypeScript | Vue JS | Next JS",
               2000,
@@ -109,7 +109,7 @@ export function Hero() {
                   <a href="/resume-lakshayverma.pdf" download>
                     <AnimatedButton
                       text="Download Resume"
-                     
+
                       icon={<Download className="w-5 h-5" />}
                     />
                   </a>
