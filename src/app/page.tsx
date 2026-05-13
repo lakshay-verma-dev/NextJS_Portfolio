@@ -3,7 +3,7 @@ import FloatingCursor from "@/components/FloatingCursor";
 import { Hero } from "@/sections/Hero";
 import { WorkExperience } from "@/sections/WorkExperience";
 import { Skills } from "@/sections/Skills";
-import { LeetCode } from "@/sections/LeetCode";
+// import { LeetCode } from "@/sections/LeetCode";
 import { GitHub } from "@/sections/GitHub";
 import { Contact } from "@/sections/Contact";
 import { Challenges } from "@/sections/Challenges";
@@ -21,7 +21,7 @@ export default function Home() {
         <WorkExperience />
         <Skills />
         <Projects />
-        <LeetCode />
+        {/* <LeetCode /> */}
         <GitHub />
         <Challenges />
         <Contact />
