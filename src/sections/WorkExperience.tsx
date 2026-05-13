@@ -279,7 +279,7 @@ export function WorkExperience() {
             ref={textRef}
             className="my-8 text-slate-300 text-lg leading-relaxed"
           >
-            Over the years, I've had the opportunity to work with amazing teams
+            Over the years, I&apos;ve had the opportunity to work with amazing teams
             and build scalable applications.
           </p>
 
