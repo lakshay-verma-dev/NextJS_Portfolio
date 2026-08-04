@@ -55,9 +55,8 @@ export const Navbar = () => {
             className="shrink-0 text-base font-bold tracking-wide text-white sm:text-lg"
           >
             <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Lakshay
+              LV
             </span>
-            <span className="text-slate-400">.dev</span>
           </Link>
 
           <ul className="hidden items-center gap-0.5 md:flex">
