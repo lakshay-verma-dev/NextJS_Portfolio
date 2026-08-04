@@ -20,7 +20,6 @@ export const experiences = [
             "Cloudflare",
         ],
         projects: [
-            "Taekwondo Super League (TSL)",
             "Skor",
             "EquiCare",
             "Liquid of Life",
