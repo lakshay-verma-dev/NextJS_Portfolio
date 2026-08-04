@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { Project } from "./ProjectCard";
 
@@ -35,14 +35,21 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "Overview":
-        return <p className="text-gray-700 dark:text-gray-300">{overview}</p>;
+        return <p className="leading-relaxed text-slate-300">{overview}</p>;
 
       case "Features":
         return (
-          <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+          <ul className="list-disc space-y-2 pl-5 text-slate-300">
             {features.map((feature, idx) => (
               <li key={idx}>{feature}</li>
             ))}
@@ -51,7 +58,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
       case "Challenges":
         return (
-          <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+          <ul className="list-disc space-y-2 pl-5 text-slate-300">
             {challenges.map((item, idx) => (
               <li key={idx}>{item}</li>
             ))}
@@ -60,7 +67,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
       case "Learnings":
         return (
-          <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
+          <ul className="list-disc space-y-2 pl-5 text-slate-300">
             {learnings.map((item, idx) => (
               <li key={idx}>{item}</li>
             ))}
@@ -73,7 +80,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
             {project.tech.map((techItem, idx) => (
               <span
                 key={idx}
-                className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300 text-xs font-semibold px-3 py-1 rounded-full"
+                className="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200"
               >
                 {techItem}
               </span>
@@ -83,16 +90,18 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
       case "Other Info":
         return (
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
+          <div className="space-y-2 text-slate-300">
             <p>
-              <strong>Role:</strong> {role}
+              <span className="font-semibold text-white">Role:</span> {role}
             </p>
             <p>
-              <strong>Duration:</strong> {duration}
+              <span className="font-semibold text-white">Duration:</span>{" "}
+              {duration}
             </p>
             {impact && (
               <p>
-                <strong>Impact:</strong> {impact}
+                <span className="font-semibold text-white">Impact:</span>{" "}
+                {impact}
               </p>
             )}
           </div>
@@ -102,50 +111,45 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         return null;
     }
   };
-  
 
   return (
     <div
-      className="fixed inset-0 z-50 backdrop-blur-sm bg-white/10 flex justify-center pt-24 px-4 sm:px-6"
-      style={{ overflowY: "auto" }}
+      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/70 p-0 backdrop-blur-md sm:items-center sm:p-4"
+      onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-gray-900 max-w-4xl w-full rounded-lg shadow-lg p-6 relative flex flex-col"
-        style={{ maxHeight: "80vh" }}
+        className="relative flex max-h-[92vh] w-full max-w-3xl flex-col rounded-t-2xl border border-white/10 bg-slate-950/95 p-5 shadow-2xl sm:max-h-[85vh] sm:rounded-2xl sm:p-6"
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 cursor-pointer text-gray-500 hover:text-red-500 transition"
+          className="absolute right-3 top-3 rounded-lg border border-white/10 p-1.5 text-slate-400 transition hover:border-red-400/40 hover:text-red-300"
           aria-label="Close"
         >
-          <X size={24} />
+          <X size={20} />
         </button>
 
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <h2 className="mb-4 pr-10 text-xl font-bold text-white sm:text-2xl">
           {title}
         </h2>
 
-        {/* Tabs */}
-        <nav className="mb-4 flex border-b border-gray-300 dark:border-gray-700 overflow-x-auto whitespace-nowrap w-full">
+        <nav className="mb-4 flex w-full gap-1 overflow-x-auto border-b border-white/10 pb-px">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`py-2 px-4 -mb-px border-b-2 font-semibold text-sm flex-shrink-0 ${
+              className={`shrink-0 border-b-2 px-3 py-2 text-xs font-semibold transition-colors sm:text-sm ${
                 activeTab === tab
-                  ? "border-indigo-600 text-indigo-600 dark:text-indigo-400"
-                  : "border-transparent text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
-              } transition-colors`}
+                  ? "border-cyan-400 text-cyan-300"
+                  : "border-transparent text-slate-400 hover:text-slate-200"
+              }`}
             >
               {tab}
             </button>
           ))}
         </nav>
 
-        {/* Scrollable Content */}
-        <div className="overflow-y-auto text-sm" style={{ flex: 1 }}>
+        <div className="min-h-0 flex-1 overflow-y-auto pr-1 text-sm sm:text-base">
           {renderTabContent()}
         </div>
       </div>

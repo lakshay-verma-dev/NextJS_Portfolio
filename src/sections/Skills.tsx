@@ -3,7 +3,6 @@
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
-import Tilt from "react-parallax-tilt";
 import {
   SiReact,
   SiTypescript,
@@ -22,15 +21,11 @@ import {
   SiPostman,
   SiCplusplus,
   SiShopify,
+  SiBitbucket,
+  SiCloudflare,
 } from "react-icons/si";
-import { FaServer } from "react-icons/fa";
-import { FaAws } from "react-icons/fa";
+import { FaAws, FaCode } from "react-icons/fa";
 import { IconType } from "react-icons";
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
 
 interface Skill {
   name: string;
@@ -54,6 +49,7 @@ export function Skills() {
       title: "E-Commerce",
       skills: [
         { name: "Shopify", icon: SiShopify },
+        { name: "Liquid Templating", icon: FaCode },
       ],
     },
     {
@@ -61,7 +57,8 @@ export function Skills() {
       skills: [
         { name: "Node.js", icon: SiNodedotjs },
         { name: "Express.js", icon: SiExpress },
-        { name: "Python", icon: SiPython },
+        { name: "Python / FastAPI", icon: SiPython },
+        { name: "RESTful APIs", icon: SiPostman },
       ],
     },
     {
@@ -77,11 +74,11 @@ export function Skills() {
       skills: [
         { name: "Git", icon: SiGit },
         { name: "GitHub", icon: SiGithub },
+        { name: "Bitbucket", icon: SiBitbucket },
         { name: "Postman", icon: SiPostman },
+        { name: "Cloudflare", icon: SiCloudflare },
         { name: "AWS EC2", icon: FaAws },
-        { name: "RESTful APIs", icon: SiPostman },
-        { name: "NGINX", icon: FaServer }, // ✅ New entry
-        { name: "C++", icon: SiCplusplus },
+        { name: "C++ (OOPS)", icon: SiCplusplus },
       ],
     },
   ];
@@ -90,57 +87,35 @@ export function Skills() {
     <SectionWrapper id="skills">
       <SectionHeader>My Skill Set</SectionHeader>
 
-      <motion.div
-        className="max-w-7xl mx-auto px-6 grid gap-20"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-      >
+      <div className="grid w-full gap-6 sm:gap-8">
         {skillCategories.map((category, index) => (
           <motion.div
             key={category.title}
-            className="p-6 rounded-3xl border-2 border-cyan-600/20  from-cyan-900/30 to-cyan-800/10 shadow-lg"
-            variants={cardVariants}
-            custom={index}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: index * 0.05 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 shadow-[0_8px_32px_rgba(0,0,0,0.2)] backdrop-blur-md sm:p-6"
           >
-            <h3 className="text-3xl font-semibold text-center mb-8 text-cyan-300 uppercase tracking-widest">
+            <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300 sm:mb-5 sm:text-base">
               {category.title}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {category.skills.map(({ name, icon: Icon }, idx) => (
-                <Tilt
-                  key={idx}
-                  tiltMaxAngleX={10}
-                  tiltMaxAngleY={10}
-                  scale={1.05}
-                  transitionSpeed={400}
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6">
+              {category.skills.map(({ name, icon: Icon }) => (
+                <div
+                  key={name}
+                  className="flex flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 transition-all duration-300 hover:border-cyan-400/30 hover:bg-cyan-500/10 sm:p-4"
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 1 }}
-                    className="bg-cyan-900/30 backdrop-blur-md p-4 rounded-xl flex flex-col items-center justify-center gap-2 border border-cyan-500/20 shadow-cyan-400/10 shadow-md hover:shadow-cyan-500/30 transition-all duration-300 group"
-                  >
-                    <motion.div
-                      className="text-5xl text-cyan-300 group-hover:animate-pulse"
-                      animate={{ y: [0, -4, 0] }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 2,
-                        ease: "easeInOut",
-                        delay: idx * 0.05,
-                      }}
-                    >
-                      <Icon />
-                    </motion.div>
-                    <span className="text-xs sm:text-sm text-white text-center font-light">
-                      {name}
-                    </span>
-                  </motion.div>
-                </Tilt>
+                  <Icon className="text-3xl text-cyan-300 sm:text-4xl" />
+                  <span className="text-center text-[11px] leading-tight text-slate-200 sm:text-sm">
+                    {name}
+                  </span>
+                </div>
               ))}
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </SectionWrapper>
   );
 }

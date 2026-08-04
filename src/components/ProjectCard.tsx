@@ -33,59 +33,66 @@ interface ProjectCardProps {
 export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
   const isPersonal = project.type === "personal";
 
+  const tagStyles =
+    project.tag === "In Progress"
+      ? "bg-amber-500/15 text-amber-200 border-amber-400/40"
+      : project.tag === "Complete"
+        ? "bg-emerald-500/15 text-emerald-200 border-emerald-400/40"
+        : "bg-cyan-500/15 text-cyan-200 border-cyan-400/40";
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, delay: idx * 0.2 }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, delay: Math.min(idx * 0.08, 0.4) }}
       viewport={{ once: true }}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col h-full max-h-[500px] overflow-auto border border-gray-200 dark:border-gray-700"
+      className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-md transition-all duration-300 hover:border-cyan-400/30 hover:bg-white/[0.07] sm:p-6"
     >
-      <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <h3 className="text-lg font-semibold leading-snug text-white sm:text-xl">
           {project.title}
         </h3>
         {project.tag && (
           <span
-            className={`text-xs font-semibold px-3 py-1 rounded-full border ${project.tag === "In Progress"
-                ? "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 border-yellow-400"
-                : project.tag === "Complete"
-                  ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-400"
-                  : "bg-gray-200 text-gray-800 border-gray-400"
-              }`}
+            className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide sm:text-xs ${tagStyles}`}
           >
             {project.tag}
           </span>
         )}
       </div>
 
-      <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm line-clamp-3">
+      <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-slate-300">
         {project.description}
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="mb-4 flex flex-wrap gap-2">
         {project.tech.slice(0, 5).map((tech) => (
           <span
             key={tech}
-            className="bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-xs px-3 py-1 rounded-full"
+            className="rounded-full border border-purple-400/20 bg-purple-500/10 px-2.5 py-1 text-[11px] text-purple-200 sm:text-xs"
           >
             {tech}
           </span>
         ))}
+        {project.tech.length > 5 && (
+          <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-slate-400">
+            +{project.tech.length - 5}
+          </span>
+        )}
       </div>
 
-      <div className="flex flex-col gap-2 mt-auto text-sm">
+      <div className="mt-auto flex flex-wrap items-center gap-4 text-sm">
         {project.live ? (
           <a
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-blue-600 hover:underline"
+            className="inline-flex items-center gap-1.5 text-cyan-300 transition-colors hover:text-cyan-200"
           >
-            <ExternalLink className="w-4 h-4" /> Live
+            <ExternalLink className="h-4 w-4" /> Live
           </a>
         ) : isPersonal ? (
-          <span className="text-gray-500 italic">Live: Coming Soon...</span>
+          <span className="text-slate-500 italic">Live soon</span>
         ) : null}
 
         {project.github ? (
@@ -93,19 +100,18 @@ export function ProjectCard({ project, idx, onViewDetails }: ProjectCardProps) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-gray-800 dark:text-gray-200 hover:underline"
+            className="inline-flex items-center gap-1.5 text-slate-200 transition-colors hover:text-white"
           >
-            <Github className="w-4 h-4" /> GitHub
+            <Github className="h-4 w-4" /> GitHub
           </a>
         ) : isPersonal ? (
-          <span className="text-gray-500 italic">GitHub: Coming Soon...</span>
+          <span className="text-slate-500 italic">GitHub soon</span>
         ) : null}
       </div>
 
-      {/* Gradient Button */}
       <button
         onClick={onViewDetails}
-        className="mt-4 w-full py-4 px-12 text-[12px] uppercase tracking-[2.5px] font-bold text-black bg-white rounded-[45px] shadow-[0_8px_15px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out transform cursor-pointer hover:bg-[#02367B] hover:text-white hover:shadow-[0_15px_20px_rgba(2,54,123,0.4)] hover:translate-y-[-4px] active:translate-y-[-1px]"
+        className="mt-5 w-full rounded-xl border border-cyan-400/30 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:border-cyan-300/50 hover:from-cyan-500/30 hover:to-purple-500/30 hover:shadow-[0_0_24px_rgba(34,211,238,0.15)]"
       >
         View Details
       </button>

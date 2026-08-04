@@ -20,47 +20,43 @@ export function Projects() {
 
   return (
     <SectionWrapper id="projects">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <SectionHeader>Projects</SectionHeader>
+      <SectionHeader>Projects</SectionHeader>
 
-        {/* Personal Projects */}
-        <div>
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
-            Personal Projects
-          </h3>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-            {personalProjects.map((project, idx) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                idx={idx}
-                onViewDetails={() => openDetail(project)}
-              />
-            ))}
-          </div>
+      <div className="mb-12 sm:mb-16">
+        <h3 className="mb-5 text-center text-lg font-semibold text-slate-200 sm:mb-6 sm:text-left sm:text-xl">
+          Personal Projects
+        </h3>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {personalProjects.map((project, idx) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              idx={idx}
+              onViewDetails={() => openDetail(project)}
+            />
+          ))}
         </div>
-
-        {/* Company Projects */}
-        <div>
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">
-            Work Projects
-          </h3>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {companyProjects.map((project, idx) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                idx={idx}
-                onViewDetails={() => openDetail(project)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {selectedProject && (
-          <ProjectDetail project={selectedProject} onClose={closeDetail} />
-        )}
       </div>
+
+      <div>
+        <h3 className="mb-5 text-center text-lg font-semibold text-slate-200 sm:mb-6 sm:text-left sm:text-xl">
+          Work Projects
+        </h3>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {companyProjects.map((project, idx) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              idx={idx}
+              onViewDetails={() => openDetail(project)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {selectedProject && (
+        <ProjectDetail project={selectedProject} onClose={closeDetail} />
+      )}
     </SectionWrapper>
   );
 }

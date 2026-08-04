@@ -17,7 +17,8 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata = {
   title: "Lakshay Verma - Software Developer",
-  description: "A showcase of my software development journey",
+  description:
+    "Software Developer with 1.5+ years of experience in React.js, Next.js, Node.js, TypeScript, and Shopify. Building scalable web applications, REST APIs, and production-ready products.",
   icons: {
     icon: "/favicon.png",
   },
@@ -31,10 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${cormorant.variable} bg-white dark:bg-black text-gray-900 dark:text-white overflow-x-hidden`}
+        className={`${outfit.variable} ${cormorant.variable} min-h-screen overflow-x-hidden bg-[#05070f] text-white antialiased`}
       >
         <Navbar />
-        <main className="pt-10 w-full">
+        <main className="relative w-full pt-20 sm:pt-24">
           {children}
         </main>
       </body>

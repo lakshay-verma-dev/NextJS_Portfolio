@@ -26,7 +26,7 @@ export function GitHub() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center"
+        className="grid grid-cols-1 gap-6 text-center md:grid-cols-2 md:gap-8"
       >
         <GitHubStats />
         <GitHubStreak />
@@ -37,18 +37,18 @@ export function GitHub() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="mt-16 text-center"
+        className="mt-12 text-center sm:mt-16"
       >
-        <h3 className="text-xl sm:text-2xl font-bold text-purple-500 dark:text-purple-300 mb-6">
+        <h3 className="mb-4 text-lg font-bold text-purple-300 sm:mb-6 sm:text-2xl">
           GitHub Contribution Calendar
         </h3>
-        <div className="overflow-x-auto flex justify-center">
-          <div className="inline-block min-w-[320px] sm:min-w-[500px]">
+        <div className="flex justify-center overflow-x-auto px-1">
+          <div className="inline-block min-w-[280px] sm:min-w-[500px]">
             <GitHubCalendar
               username="lakshay-verma-dev"
-              blockSize={15}
-              blockMargin={5}
-              fontSize={14}
+              blockSize={12}
+              blockMargin={4}
+              fontSize={12}
             />
           </div>
         </div>

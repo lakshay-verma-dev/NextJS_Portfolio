@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05070f;
+  --foreground: #ededed;
+  --site-max-width: 74rem; /* 1152px — compact content width */
+  --site-gutter: 1rem;
   --z-navbar: 50;
   --z-modal-backdrop: 90;
   --z-modal-content: 100;
@@ -14,17 +16,34 @@
   --color-foreground: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-outfit), sans-serif;
+}
+
+/* Shared section / page width */
+.site-container {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --site-gutter: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --site-gutter: 2rem;
+  }
 }
 
 h1,

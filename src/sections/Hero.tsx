@@ -39,7 +39,7 @@ export function Hero() {
   return (
     <SectionWrapper
       id="home"
-      className="min-h-screen w-full flex items-center justify-center text-center px-4 relative"
+      className="min-h-[100svh] w-full flex items-center justify-center text-center relative"
     >
       <ResumeViewer isOpen={showResume} onClose={() => setShowResume(false)} />
 
@@ -47,29 +47,31 @@ export function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="w-full max-w-3xl mx-auto space-y-6 relative"
+        className="w-full max-w-4xl mx-auto space-y-6 relative"
       >
         <motion.h1
           variants={itemVariants}
-          className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
+          className="text-3xl font-extrabold leading-tight sm:text-4xl md:text-6xl"
         >
-          {"Hi, I'm "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+          <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+            {"Hi, I'm "}
+          </span>
+          <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
             Lakshay Verma
           </span>
         </motion.h1>
 
         <motion.div
           variants={itemVariants}
-          className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300"
+          className="min-h-[2.5rem] text-lg font-semibold text-slate-200 sm:min-h-[3rem] sm:text-2xl md:text-3xl"
         >
           <TypeAnimation
             sequence={[
               "Software Developer",
               2000,
-              "MERN | TypeScript | Vue JS | Next JS",
+              "React.js | Next.js | Node.js | TypeScript",
               2000,
-              "Problem Solver & Innovator",
+              "Shopify | Liquid | Full Stack",
               2000,
             ]}
             wrapper="span"
@@ -80,15 +82,17 @@ export function Hero() {
 
         <motion.p
           variants={itemVariants}
-          className="text-gray-500 dark:text-gray-400 text-base md:text-lg leading-relaxed"
+          className="mx-auto max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-base md:text-lg"
         >
-          Passionate about building modern full-stack apps with smooth UI,
-          scalable architecture, and performance in mind.
+          Software Developer with 1.5+ years of hands-on experience in React.js,
+          Next.js, Node.js, TypeScript, and Shopify development. Building
+          scalable production apps, REST APIs, and third-party integrations —
+          based in Yamunanagar, Haryana.
         </motion.p>
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-wrap justify-center gap-4 pt-4"
+          className="flex flex-wrap justify-center gap-3 pt-2 sm:gap-4 sm:pt-4"
         >
           <Tooltip.Provider delayDuration={100}>
             {/* View Resume */}

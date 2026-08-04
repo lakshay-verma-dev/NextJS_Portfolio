@@ -2,6 +2,7 @@ import StarryBackground from "@/components/StarryBackground";
 import FloatingCursor from "@/components/FloatingCursor";
 import { Hero } from "@/sections/Hero";
 import { WorkExperience } from "@/sections/WorkExperience";
+import { Education } from "@/sections/Education";
 import { Skills } from "@/sections/Skills";
 // import { LeetCode } from "@/sections/LeetCode";
 import { GitHub } from "@/sections/GitHub";
@@ -19,6 +20,7 @@ export default function Home() {
       <div className="relative z-10 ">
         <Hero />
         <WorkExperience />
+        <Education />
         <Skills />
         <Projects />
         {/* <LeetCode /> */}

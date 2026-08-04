@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Mail, Linkedin, Github, Phone, MapPin } from "lucide-react";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { SectionHeader } from "@/components/SectionHeader";
 import emailjs from "emailjs-com";
@@ -48,67 +48,120 @@ export function Contact() {
       .finally(() => setLoading(false));
   };
 
+  const contactLinks = [
+    {
+      href: "mailto:lakshayverma544@gmail.com",
+      icon: Mail,
+      label: "lakshayverma544@gmail.com",
+      color: "text-purple-300",
+    },
+    {
+      href: "tel:+917015698733",
+      icon: Phone,
+      label: "+91 7015698733",
+      color: "text-emerald-300",
+    },
+    {
+      href: undefined,
+      icon: MapPin,
+      label: "Yamunanagar, Haryana",
+      color: "text-slate-300",
+    },
+    {
+      href: "https://linkedin.com/in/lakshay-verma-dev",
+      icon: Linkedin,
+      label: "LinkedIn",
+      color: "text-blue-300",
+    },
+    {
+      href: "https://github.com/lakshay-verma-dev",
+      icon: Github,
+      label: "GitHub",
+      color: "text-slate-200",
+    },
+  ];
+
+  const inputClass =
+    "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none transition focus:border-cyan-400/40 focus:ring-2 focus:ring-cyan-400/20";
+
   return (
     <SectionWrapper id="contact">
       <SectionHeader>Contact Me</SectionHeader>
-      <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-        {/* Contact Info */}
+
+      <div className="grid w-full gap-8 lg:grid-cols-5 lg:gap-10">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, type: "spring" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="flex-1 space-y-6 text-center md:text-left"
+          className="lg:col-span-2"
         >
-          <div className="flex flex-col gap-4 items-center md:items-start">
-            <a
-              href="mailto:lakshayverma.dev@gmail.com"
-              className="flex items-center gap-2 text-lg text-purple-700 dark:text-purple-300 hover:underline"
-            >
-              <Mail className="w-5 h-5" /> lakshayverma.dev@gmail.com
-            </a>
-            <a
-              href="https://linkedin.com/in/lakshay-verma-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-lg text-blue-700 dark:text-blue-300 hover:underline"
-            >
-              <Linkedin className="w-5 h-5" /> LinkedIn
-            </a>
-            <a
-              href="https://github.com/lakshay-verma-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-lg text-gray-800 dark:text-gray-200 hover:underline"
-            >
-              <Github className="w-5 h-5" /> GitHub
-            </a>
-           
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-md sm:p-6">
+            <p className="mb-5 text-sm leading-relaxed text-slate-300 sm:text-base">
+              Open to opportunities, collaborations, and freelance work. Reach
+              out anytime.
+            </p>
+            <div className="flex flex-col gap-3">
+              {contactLinks.map(({ href, icon: Icon, label, color }) => {
+                const content = (
+                  <>
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5">
+                      <Icon className={`h-4 w-4 ${color}`} />
+                    </span>
+                    <span className="truncate text-sm text-slate-200 sm:text-base">
+                      {label}
+                    </span>
+                  </>
+                );
+
+                if (!href) {
+                  return (
+                    <div
+                      key={label}
+                      className="flex items-center gap-3 rounded-xl border border-transparent px-1 py-1"
+                    >
+                      {content}
+                    </div>
+                  );
+                }
+
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="flex items-center gap-3 rounded-xl border border-transparent px-1 py-1 transition hover:border-white/10 hover:bg-white/5"
+                  >
+                    {content}
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </motion.div>
 
-        {/* Contact Form */}
         <motion.form
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, type: "spring" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="flex-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 space-y-6 w-full"
+          className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-md sm:p-6 lg:col-span-3"
         >
           {submitted && (
-            <div className="p-3 text-sm rounded bg-green-100 text-green-800 border border-green-300">
-              ✅ Message sent successfully!
+            <div className="rounded-xl border border-emerald-400/30 bg-emerald-500/10 p-3 text-sm text-emerald-200">
+              Message sent successfully!
             </div>
           )}
           {error && (
-            <div className="p-3 text-sm rounded bg-red-100 text-red-800 border border-red-300">
-              ❌ Failed to send message. Please try again.
+            <div className="rounded-xl border border-red-400/30 bg-red-500/10 p-3 text-sm text-red-200">
+              Failed to send message. Please try again.
             </div>
           )}
 
           <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-1">
+            <label htmlFor="name" className="mb-1.5 block text-sm text-slate-300">
               Name
             </label>
             <input
@@ -118,11 +171,12 @@ export function Contact() {
               required
               value={form.name}
               onChange={handleChange}
-              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className={inputClass}
+              placeholder="Your name"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-1">
+            <label htmlFor="email" className="mb-1.5 block text-sm text-slate-300">
               Email
             </label>
             <input
@@ -132,11 +186,12 @@ export function Contact() {
               required
               value={form.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className={inputClass}
+              placeholder="you@example.com"
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-1">
+            <label htmlFor="message" className="mb-1.5 block text-sm text-slate-300">
               Message
             </label>
             <textarea
@@ -146,32 +201,20 @@ export function Contact() {
               rows={4}
               value={form.message}
               onChange={handleChange}
-              className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className={`${inputClass} resize-y min-h-[120px]`}
+              placeholder="How can I help?"
             />
           </div>
 
-          {/* Submit Button */}
-          <motion.button
+          <button
             type="submit"
-            whileHover={{
-              boxShadow: "0px 0px 16px rgba(124, 58, 237, 0.6)",
-              transition: { type: "spring", stiffness: 300 },
-            }}
-            whileTap={{ scale: 0.95 }}
             disabled={loading}
-            className={`w-full py-3 bg-gradient-to-r cursor-pointer from-purple-600 to-blue-600 text-white rounded-lg font-semibold transition-transform ${
-              loading ? "opacity-70 cursor-not-allowed" : "hover:scale-105"
+            className={`w-full rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 py-3.5 text-sm font-semibold text-white transition hover:opacity-95 ${
+              loading ? "cursor-not-allowed opacity-70" : "hover:shadow-[0_0_24px_rgba(124,58,237,0.35)]"
             }`}
           >
-            {loading ? (
-              <div className="flex items-center justify-center gap-2">
-                <span className="spinner-border inline-block w-4 h-4 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
-                Sending...
-              </div>
-            ) : (
-              "Send Message"
-            )}
-          </motion.button>
+            {loading ? "Sending..." : "Send Message"}
+          </button>
         </motion.form>
       </div>
     </SectionWrapper>

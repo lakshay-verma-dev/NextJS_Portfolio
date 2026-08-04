@@ -2,12 +2,13 @@
 export const chatbot = [
   {
     question: "What tech stack did you use?",
-    answer: "I used Next.js, Tailwind CSS, MongoDB, and Framer Motion.",
+    answer:
+      "I primarily work with React.js, Next.js, Node.js, TypeScript, MongoDB/PostgreSQL, and Shopify (Liquid). I also use Tailwind CSS, Redux Toolkit, and tools like Git, Postman, Cloudflare, and AWS EC2.",
   },
   {
     question: "How do you manage state in your projects?",
     answer:
-      "I use React’s built-in hooks like useState, useEffect, and sometimes context or Zustand for global state management.",
+      "I use React’s built-in hooks like useState, useEffect, and Redux Toolkit for complex shared state. I also use context when lighter global state is enough.",
   },
   {
     question: "Do you follow any design system or UI best practices?",
@@ -22,7 +23,7 @@ export const chatbot = [
   {
     question: "Are you currently working or looking for opportunities?",
     answer:
-      "I'm currently looking for job opportunities. Feel free to connect with me on LinkedIn or reach out via the contact form!",
+      "I'm currently a Software Developer at Seraphic Infosolutions and open to strong opportunities. Feel free to connect on LinkedIn or reach out via the contact form!",
   },
   {
     question: "Do you take freelance projects?",

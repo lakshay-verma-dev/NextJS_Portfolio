@@ -2,70 +2,59 @@ export const experiences = [
     {
         id: 1,
         role: "Software Developer",
-        company: "DST Technologies Pvt. Ltd",
-        location: "Saharanpur, India",
+        company: "Seraphic Infosolutions Pvt. Ltd",
+        location: "Mohali, India",
         workMode: "On Site",
-
-        jobType: "Internship",
-
-        duration: "Nov 2024 - Apr 2025",
-
+        jobType: "Full-Time",
+        duration: "June 2025 - Present",
         technologies: [
-            "React js",
-            "Node js",
-            "Redux",
-            "Python",
-            "PostgreSQL",
-            "MongoDB",
-            "Bootstrap",
-            "AWS EC2",
-            "Dhan API",
-            "Telegram Bot API",
+            "React.js",
+            "Next.js",
+            "Node.js",
+            "TypeScript",
+            "JavaScript",
+            "Shopify",
+            "Liquid",
+            "Tailwind CSS",
+            "REST APIs",
+            "Cloudflare",
         ],
-
         projects: [
-            "Trade Monitoring Platform",
-            "Real-Time Options Analytics Dashboard",
-            "Automated Trade Alert System",
+            "Taekwondo Super League (TSL)",
+            "Skor",
+            "EquiCare",
+            "Liquid of Life",
+            "ChampsBase",
         ],
-
         description:
-            "Worked as a Software Developer Intern at LearnKaro Education Technologies Pvt. Ltd, where I contributed to building a full-stack trade monitoring platform for real-time F&O market tracking and automated trade notifications. Developed responsive dashboards and secure role-based systems for analysts and admins using React, Redux, FastAPI, and PostgreSQL. Integrated broker APIs like Dhan and Delta along with Telegram Bot API to deliver live market updates, trade alerts, and automated stoploss/target notifications while ensuring optimized performance and scalable backend architecture.",
+            "Developing and maintaining web applications using Next.js and React.js to deliver high-performance user interfaces. Building and optimizing Shopify e-commerce stores using Liquid theme development and customizations. Integrating third-party services and APIs into web applications for enhanced functionality. Implementing performance optimizations including lazy loading and code splitting to improve page load speed and user experience.",
     },
     {
         id: 2,
-
-        role: "Frontend Developer",
-
-        company: "Seraphic Infosolutions Pvt. Ltd",
-
-        location: "Mohali District, India",
-
+        role: "Full Stack Developer Trainee",
+        company: "DST Technology Pvt. Ltd",
+        location: "Saharanpur, India",
         workMode: "On Site",
-
-        jobType: "Full-Time",
-
-        duration: "Jun 2025 - Present",
-
+        jobType: "Trainee",
+        duration: "Nov 2024 - Apr 2025",
         technologies: [
-            "React js",
-            "Next js",
-            "Tailwind CSS",
-            "TypeScript",
-            "JavaScript",
+            "React",
+            "Redux",
             "Bootstrap",
-            "GSAP",
-            "Shopify",
+            "FastAPI",
+            "Python",
+            "DuckDB",
+            "PostgreSQL",
+            "Dhan API",
+            "Telegram Bot API",
+            "AWS EC2",
         ],
-
         projects: [
-            "Equicare",
-            "Kenzari Jewellers",
-            "Liquid of Life",
-            "Skor",
+            "Trade Monitoring Software",
+            "Real-Time Options Analytics Dashboard",
+            "Automated Trade Alert System",
         ],
-
         description:
-            "Working as a Frontend Developer at Seraphic Infosolutions, contributing to the development of modern and responsive frontend applications using React, Next.js, Tailwind CSS, and TypeScript. Worked on Shopify development projects including storefront customization, dynamic UI sections, and responsive e-commerce experiences. Also developed interactive dashboards and website walkthrough experiences with smooth animations using GSAP while ensuring performance optimization and cross-device responsiveness.",
-    }
+            "Developed trade monitoring software using Dhan API and Telegram Bot API. Built a role-based dashboard for analysts and admins. Worked with React, Redux, and Bootstrap for frontend, and FastAPI (Python) with DuckDB and PostgreSQL for backend data handling.",
+    },
 ];

@@ -52,7 +52,7 @@ export function LeetCode() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="max-w-4xl mx-auto mb-12 flex justify-center items-center"
+        className="mb-12 flex w-full items-center justify-center"
       >
         <LeetCodeCard />
       </motion.div>

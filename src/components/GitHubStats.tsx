@@ -21,7 +21,7 @@ export default function GitHubStats() {
         <img
           src="https://github-readme-stats-sigma-five.vercel.app/api?username=lakshay-verma-dev&show_icons=true&theme=radical"
           alt="Lakshay Verma's GitHub stats"
-          className="w-full max-w-[600px] h-[100%] object-contain mx-auto rounded-lg shadow-2xl transition-transform"
+          className="w-full h-[100%] object-contain mx-auto rounded-lg shadow-2xl transition-transform"
           referrerPolicy="no-referrer"
           onError={() => setHasError(true)}
         />

@@ -253,7 +253,7 @@ export function WorkExperience() {
 
       <div
         ref={containerRef}
-        className="container mx-auto flex flex-col gap-14 lg:flex-row mt-14"
+        className="mx-auto flex w-full flex-col gap-10 lg:flex-row lg:gap-14"
       >
         {/* Left Side */}
         <div
@@ -262,7 +262,7 @@ export function WorkExperience() {
         >
           <h2
             ref={h2Ref}
-            className="text-[32px] leading-tight font-bold text-white md:text-[52px]"
+            className="text-[28px] leading-tight font-bold text-white sm:text-[32px] md:text-[48px]"
           >
             My Professional Journey{" "}
             <Code className="inline-block h-[30px] w-[30px] md:h-[50px] md:w-[50px] text-cyan-400" />
@@ -277,10 +277,11 @@ export function WorkExperience() {
 
           <p
             ref={textRef}
-            className="my-8 text-slate-300 text-lg leading-relaxed"
+            className="my-6 text-base leading-relaxed text-slate-300 sm:my-8 sm:text-lg"
           >
-            Over the years, I&apos;ve had the opportunity to work with amazing teams
-            and build scalable applications.
+            Software Developer with 1.5+ years of hands-on experience building
+            production web apps, e-commerce storefronts, and full-stack platforms
+            with React, Next.js, Node.js, TypeScript, and Shopify.
           </p>
 
           <p
@@ -292,11 +293,11 @@ export function WorkExperience() {
 
           <div className="flex flex-col gap-3 lg:-ms-4" ref={statsRef}>
             {[
-              "Frontend Architecture",
+              "React / Next.js Applications",
+              "Shopify & Liquid Development",
+              "REST APIs & Integrations",
               "Full Stack Engineering",
               "Performance Optimization",
-              "State Management",
-              "Agile Development",
             ].map((item) => (
               <div
                 key={item}
@@ -309,20 +310,20 @@ export function WorkExperience() {
         </div>
 
         {/* Timeline */}
-        <div className="timeline-container relative flex w-full flex-1 flex-col gap-12 pl-8 md:pl-14 border-l border-cyan-800/50">
+        <div className="timeline-container relative flex w-full flex-1 flex-col gap-8 border-l border-cyan-800/50 pl-6 sm:gap-10 sm:pl-8 md:pl-14">
           {/* Timeline Fill */}
           <div
             ref={timelineFillRef}
-            className="absolute left-0 top-0 w-[2px] bg-cyan-400 rounded-full"
+            className="absolute left-0 top-0 w-[2px] rounded-full bg-cyan-400"
             style={{ height: "0%" }}
           />
 
           {/* Moving Icon */}
           <div
             ref={iconRef}
-            className="absolute top-0 -left-[23px] z-20 flex h-12 w-12 items-center justify-center rounded-full border-2 border-cyan-400 bg-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.5)]"
+            className="absolute top-0 -left-[18px] z-20 flex h-9 w-9 items-center justify-center rounded-full border-2 border-cyan-400 bg-slate-950 shadow-[0_0_20px_rgba(34,211,238,0.5)] sm:-left-[23px] sm:h-12 sm:w-12"
           >
-            <Briefcase className="h-5 w-5 text-cyan-400" />
+            <Briefcase className="h-4 w-4 text-cyan-400 sm:h-5 sm:w-5" />
           </div>
 
           {experiences.map((item, index) => (
@@ -342,39 +343,37 @@ export function WorkExperience() {
               >
                 <motion.div
                   whileHover={{
-                    scale: 1.015,
-                    y: -4,
+                    scale: 1.01,
+                    y: -2,
                   }}
                   transition={{
                     type: "spring",
                     stiffness: 220,
                     damping: 18,
                   }}
-                  className="group relative overflow-hidden rounded-2xl border border-cyan-500/20 bg-cyan-900/20 backdrop-blur-md p-6 shadow-lg transition-all duration-300 hover:border-cyan-400/30 hover:shadow-cyan-500/20"
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-4 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-cyan-400/30 hover:shadow-cyan-500/10 sm:p-6"
                 >
                   {/* Glow */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_45%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_45%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   {/* Header */}
-                  <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:justify-between">
-                    <div className="flex gap-4 w-full">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-cyan-500/20 bg-cyan-950/60">
-                        <TerminalSquare className="h-7 w-7 text-cyan-300" />
+                  <div className="relative z-10 flex flex-col gap-4">
+                    <div className="flex gap-3 sm:gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-500/20 bg-cyan-950/60 sm:h-14 sm:w-14">
+                        <TerminalSquare className="h-5 w-5 text-cyan-300 sm:h-7 sm:w-7" />
                       </div>
 
-                      <div className="w-full">
-                        <div className="flex flex-wrap items-center gap-2 justify-between">
-                          <h3 className="text-xl md:text-2xl font-bold text-cyan-300">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                          <h3 className="text-lg font-bold text-cyan-300 sm:text-xl md:text-2xl">
                             {item.role}
                           </h3>
-                          <div>
-                            <span className="inline-block rounded-full border border-cyan-500/20 bg-cyan-950/70 px-4 py-2 text-sm font-semibold text-cyan-300">
-                              {item.duration}
-                            </span>
-                          </div>
+                          <span className="inline-flex w-fit rounded-full border border-cyan-500/20 bg-cyan-950/70 px-3 py-1 text-xs font-semibold text-cyan-300 sm:text-sm">
+                            {item.duration}
+                          </span>
                         </div>
 
-                        <p className="mt-1 text-lg font-medium text-slate-100">
+                        <p className="mt-1 text-base font-medium text-slate-100 sm:text-lg">
                           {item.company}
                         </p>
 
@@ -396,15 +395,15 @@ export function WorkExperience() {
                   </div>
 
                   {/* Description */}
-                  <div className="relative z-10 mt-6">
-                    <p className="text-slate-300 leading-relaxed">
+                  <div className="relative z-10 mt-5">
+                    <p className="text-sm leading-relaxed text-slate-300 sm:text-base">
                       {item.description}
                     </p>
                   </div>
 
                   {/* Technologies */}
-                  <div className="relative z-10 mt-6">
-                    <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-cyan-400">
+                  <div className="relative z-10 mt-5">
+                    <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-cyan-400 sm:mb-3 sm:text-sm">
                       Technologies
                     </h4>
 
@@ -412,7 +411,7 @@ export function WorkExperience() {
                       {item.technologies.map((tech: string, i: number) => (
                         <span
                           key={i}
-                          className="rounded-lg border border-cyan-500/20 bg-cyan-950/40 px-3 py-1.5 text-sm text-cyan-100"
+                          className="rounded-lg border border-cyan-500/20 bg-cyan-950/40 px-2.5 py-1 text-xs text-cyan-100 sm:px-3 sm:py-1.5 sm:text-sm"
                         >
                           {tech}
                         </span>
@@ -421,8 +420,8 @@ export function WorkExperience() {
                   </div>
 
                   {/* Projects */}
-                  <div className="relative z-10 mt-6">
-                    <h4 className="mb-3 text-sm font-semibold uppercase tracking-wider text-fuchsia-400">
+                  <div className="relative z-10 mt-5">
+                    <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-fuchsia-400 sm:mb-3 sm:text-sm">
                       Highlight Projects
                     </h4>
 
@@ -430,7 +429,7 @@ export function WorkExperience() {
                       {item.projects.map((project: string, i: number) => (
                         <span
                           key={i}
-                          className="rounded-lg border border-fuchsia-500/20 bg-fuchsia-950/20 px-3 py-1.5 text-sm text-fuchsia-200"
+                          className="rounded-lg border border-fuchsia-500/20 bg-fuchsia-950/20 px-2.5 py-1 text-xs text-fuchsia-200 sm:px-3 sm:py-1.5 sm:text-sm"
                         >
                           {project}
                         </span>
