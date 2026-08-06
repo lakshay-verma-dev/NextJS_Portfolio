@@ -86,8 +86,7 @@ export function Hero() {
         >
           Software Developer with 1.5+ years of hands-on experience in React.js,
           Next.js, Node.js, TypeScript, and Shopify development. Building
-          scalable production apps, REST APIs, and third-party integrations —
-          based in Yamunanagar, Haryana.
+          scalable production apps, REST APIs, and third-party integrations.
         </motion.p>
 
         <motion.div
