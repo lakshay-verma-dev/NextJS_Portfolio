@@ -56,18 +56,6 @@ export function Contact() {
       color: "text-purple-300",
     },
     {
-      href: "tel:+917015698733",
-      icon: Phone,
-      label: "+91 7015698733",
-      color: "text-emerald-300",
-    },
-    {
-      href: undefined,
-      icon: MapPin,
-      label: "Yamunanagar, Haryana",
-      color: "text-slate-300",
-    },
-    {
       href: "https://linkedin.com/in/lakshay-verma-dev",
       icon: Linkedin,
       label: "LinkedIn",
